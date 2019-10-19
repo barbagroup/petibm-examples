@@ -1,1 +1,10 @@
+# Ignore local VS Code configuration
 .vscode
+
+# Ignore output of PetIBM simulation
+forces-*.txt
+grid.h5
+iterations-*.txt
+.logamgx
+logs
+solution
