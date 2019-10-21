@@ -6,6 +6,10 @@ Run the example:
 petibm-navierstokes -options_left -log_view ascii:view.log
 ```
 
+The simulation completed $1,000$ time steps in a few seconds on Hopper:
+
+* 1 MPI process (Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz)
+
 Plot the centerline velocity components and compare with the numerical results from Ghia et al. (1982):
 
 ```shell
@@ -13,6 +17,10 @@ python scripts/plot_centerline_velocities.py
 ```
 
 The figure is saved as a PNG file (`centerline_velocities_0001000.png`) in the sub-folder `figures` of the present simulation directory.
+
+<img src="figures/centerline_velocities_0001000.png" alt="velocity_profiles" widht="400">
+
+**Figure:** Velocity profiles of the $x$ component along a vertical line at $x=0.5$ (left) and of the $y$ component along an horizontal line at $y=0.5$ and (right).
 
 Plot the contours of the vorticity field:
 
@@ -22,6 +30,10 @@ python scripts/plot_vorticity.py
 ```
 
 The figure is saved as a PNG file (`wz_0001000.png`) in the sub-folder `figures` of the present simulation directory.
+
+<img src="figures/wz_0001000.png" alt="wz" width="400"/>
+
+**Figure:** Contours the vorticity ($21$ contours between $-5$ and $+5$).
 
 ---
 
