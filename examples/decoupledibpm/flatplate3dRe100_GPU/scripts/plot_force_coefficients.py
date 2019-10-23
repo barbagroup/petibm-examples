@@ -39,34 +39,44 @@ for angle in angles:
 
 # Load experimental data from Taira et al. (2007).
 datadir = rootdir.parents[2] / 'data'
-filepath = datadir / 'taira_et_al_2007_flatPlateRe100AR2_CdvsAoA.dat'
+filepath = datadir / 'taira_et_al_2007_flatplateRe100AR2_cd_exp.dat'
 with open(filepath, 'r') as infile:
-    cd_taira = numpy.loadtxt(infile, unpack=True)
-filepath = datadir / 'taira_et_al_2007_flatPlateRe100AR2_ClvsAoA.dat'
+    cd_taira_exp = numpy.loadtxt(infile, unpack=True)
+filepath = datadir / 'taira_et_al_2007_flatplateRe100AR2_cl_exp.dat'
 with open(filepath, 'r') as infile:
-    cl_taira = numpy.loadtxt(infile, unpack=True)
+    cl_taira_exp = numpy.loadtxt(infile, unpack=True)
+
+# Load numerical data from Taira et al. (2007).
+filepath = datadir / 'taira_et_al_2007_flatplateRe100AR2_cd_num.dat'
+with open(filepath, 'r') as infile:
+    cd_taira_num = numpy.loadtxt(infile, delimiter=',', unpack=True)
+filepath = datadir / 'taira_et_al_2007_flatplateRe100AR2_cl_num.dat'
+with open(filepath, 'r') as infile:
+    cl_taira_num = numpy.loadtxt(infile, delimiter=',', unpack=True)
 
 # Plot the force coefficients versus the angle-of-attack and compare with
 # experimental results reported in Taira et al. (2007).
-pyplot.rc('font', family='serif', size=14)
+pyplot.rc('font', family='serif', size=12)
 fig, (ax1, ax2) = pyplot.subplots(nrows=2, figsize=(6.0, 6.0), sharex=True)
 ax1.set_ylabel('Drag coefficient')
 ax1.scatter(angles, cd, label='PetIBM',
             marker='x', s=40, facecolors='black', edgecolors='none')
-ax1.scatter(*cd_taira, label='Taira et al. (2007)',
-            marker='o', s=40, facecolors='none', edgecolors='#1B9E77')
+ax1.scatter(*cd_taira_exp, label='Taira et al. (2007) - exp.',
+            marker='o', s=40, facecolors='none', edgecolors='C0')
+ax1.scatter(*cd_taira_num, label='Taira et al. (2007) - num.',
+            marker='s', s=40, facecolors='C2', edgecolors='none')
 ax1.set_ylim(0.0, 2.0)
+ax1.legend(loc='upper left', frameon=False)
 ax2.set_xlabel('Angle of attack (deg)')
 ax2.set_ylabel('Lift coefficient')
 ax2.scatter(angles, cl, label='PetIBM',
             marker='x', s=40, facecolors='black', edgecolors='none')
-ax2.scatter(*cl_taira, label='Taira et al. (2007)',
-            marker='o', s=40, facecolors='none', edgecolors='#1B9E77')
+ax2.scatter(*cl_taira_exp, label='Taira et al. (2007) - exp.',
+            marker='o', s=40, facecolors='none', edgecolors='C0')
+ax2.scatter(*cl_taira_num, label='Taira et al. (2007) - num.',
+            marker='s', s=40, facecolors='C2', edgecolors='none')
 ax2.set_xlim(0.0, 90.0)
-ax2.set_ylim(0.0, 2.0)
-handles, labels = ax1.get_legend_handles_labels()
-fig.legend(handles, labels,
-           ncol=2, loc='center', frameon=False, bbox_to_anchor=(0.54, 0.52))
+ax2.set_ylim(0.0, 1.5)
 fig.tight_layout()
 
 if show_figure:
