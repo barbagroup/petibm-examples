@@ -21,6 +21,8 @@ Package version last used indicated between parenthesis.
 * IBPM
   * 2D flow around a stationary cylinder at Reynolds numbers 40, 550, and 3000
   * 2D unsteady flow around a stationary cylinder at Reynolds number 100
+* Decoupled IBPM
+  * 2D unsteady flow around a stationary cylinder at Reynolds number 100
 
 ## Contact
 
