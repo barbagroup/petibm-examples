@@ -8,3 +8,13 @@ iterations-*.txt
 .logamgx
 logs
 solution
+
+# Ignore Python compiled files
+__pycache__
+
+# Ignore Singularity images pulled locally
+images
+
+# Ignore copy of figures (to be included in thesis)
+figures_thesis
+
