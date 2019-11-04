@@ -1,0 +1,2 @@
+# Ignore snapshots of the vorticity
+figures/wz_*
