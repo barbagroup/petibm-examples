@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Run simulation.
+# Run simulation locally or within Singularity container.
 
 descr="*** 2D flow around stationary cylinder at Reynolds number 40 ***"
 
-# Hardware configuration
+# Hardware configuration.
 np=2  # number of MPI processes
 
 print_usage() {
@@ -17,15 +17,20 @@ print_usage() {
 	printf "\n"
 }
 
+prepend_path() {
+	if [ -d "$1" ]; then
+		export PATH="$1:"$PATH
+	else
+		printf "[WARNING] $1: not a valid directory"
+	fi
+}
 
-scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
-simg=""
-mpidir=""
-
-while getopts 'm:s:h' flag; do
+# Parse command-line options.
+while getopts 'm:p:s:h' flag; do
 	case "${flag}" in
 		m) mpidir=`realpath "${OPTARG}"` ;;
 		s) simg=`realpath "${OPTARG}"` ;;
+		p) petibmdir=`realpath "${OPTARG}"` ;;
 		h) print_usage
 		   exit 0 ;;
 		*) print_usage
@@ -33,25 +38,25 @@ while getopts 'm:s:h' flag; do
 	esac
 done
 
-export PATH="$mpidir/bin:$PATH"
+printf "\n\n$descr\n\n"
 
-echo ""
-echo ""
-echo $descr
-echo ""
-echo ""
+prepend_path $mpidir/bin
 
+printf "\n[INFO] MPI version:\n"
 mpiexec --version
 
-cd $scriptdir
+scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
+cd $scriptdir > /dev/null
 if [ -f "$simg" ]; then
-	echo "[INFO] Running within Singularity container"
-	mpiexec -np $np singularity exec $simg \
+	printf "\n[INFO] Running within Singularity container\n"
+	mpiexec -np $np singularity exec --bind $scriptdir:/mnt $simg \
 		petibm-ibpm \
+		-directory /mnt \
 		-options_left \
 		-log_view ascii:view.log
 else
-	echo "[INFO] Running locally"
+	printf "\n[INFO] Running locally\n"
+	prepend_path $petibmdir/bin
 	mpiexec -np $np petibm-ibpm \
 		-options_left \
 		-log_view ascii:view.log
