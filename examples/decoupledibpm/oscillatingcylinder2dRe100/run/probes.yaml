@@ -1,0 +1,61 @@
+probes:
+  - name: probe180-u
+    type: VOLUME
+    field: u
+    viewer: hdf5
+    path: solution/probe180-u.h5
+    t_start: 17.498
+    t_end: 17.502
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]
+  - name: probe180-v
+    type: VOLUME
+    field: v
+    viewer: hdf5
+    path: solution/probe180-v.h5
+    t_start: 17.498
+    t_end: 17.502
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]
+  - name: probe210-u
+    type: VOLUME
+    field: u
+    viewer: hdf5
+    path: solution/probe210-u.h5
+    t_start: 17.914
+    t_end: 17.918
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]
+  - name: probe210-v
+    type: VOLUME
+    field: v
+    viewer: hdf5
+    path: solution/probe210-v.h5
+    t_start: 17.914
+    t_end: 17.918
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]
+  - name: probe330-u
+    type: VOLUME
+    field: u
+    viewer: hdf5
+    path: solution/probe330-u.h5
+    t_start: 19.582
+    t_end: 19.586
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]
+  - name: probe330-v
+    type: VOLUME
+    field: v
+    viewer: hdf5
+    path: solution/probe330-v.h5
+    t_start: 19.582
+    t_end: 19.586
+    box:
+      x: [-1.5, 1.5]
+      y: [-1.5, 1.5]

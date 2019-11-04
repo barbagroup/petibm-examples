@@ -1,0 +1,2 @@
+#define PetIBMOscillating_VERSION_MAJOR @PetIBMFlapping_VERSION_MAJOR@
+#define PetIBMOscillating_VERSION_MINOR @PetIBMFlapping_VERSION_MINOR@

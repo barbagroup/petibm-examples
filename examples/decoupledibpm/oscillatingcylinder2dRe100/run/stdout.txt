@@ -1,0 +1,166 @@
+
+
+*** 2D flow around inline oscillating cylinder at Reynolds number 100 ***
+
+
+[INFO] MPI version:
+mpiexec (OpenRTE) 3.1.4
+
+Report bugs to http://www.open-mpi.org/community/help/
+
+[INFO] nvidia-smi output:
+Mon Nov  4 14:02:42 2019       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.39       Driver Version: 418.39       CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce GTX 650     Off  | 00000000:03:00.0 N/A |                  N/A |
+| 21%   42C    P8    N/A /  N/A |    602MiB /   976MiB |     N/A      Default |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla K20c          Off  | 00000000:04:00.0 Off |                    0 |
+| 30%   36C    P8    16W / 225W |      0MiB /  4743MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   2  Tesla K20c          Off  | 00000000:05:00.0 Off |                    0 |
+| 30%   34C    P8    15W / 225W |      0MiB /  4743MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   3  Tesla K40c          Off  | 00000000:06:00.0 Off |                    0 |
+| 23%   34C    P8    19W / 235W |      0MiB / 11441MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0                    Not Supported                                       |
++-----------------------------------------------------------------------------+
+
+[INFO] Running locally
+AMGX version 2.1.0.131-opensource
+Built on Oct 31 2019, 18:09:08
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 100] Writing solution data... done
+[time step 200] Writing solution data... done
+[time step 300] Writing solution data... done
+[time step 400] Writing solution data... done
+[time step 500] Writing solution data... done
+[time step 600] Writing solution data... done
+[time step 700] Writing solution data... done
+[time step 800] Writing solution data... done
+[time step 900] Writing solution data... done
+[time step 1000] Writing solution data... done
+[time step 1100] Writing solution data... done
+[time step 1200] Writing solution data... done
+[time step 1300] Writing solution data... done
+[time step 1400] Writing solution data... done
+[time step 1500] Writing solution data... done
+[time step 1600] Writing solution data... done
+[time step 1700] Writing solution data... done
+[time step 1800] Writing solution data... done
+[time step 1900] Writing solution data... done
+[time step 2000] Writing solution data... done
+[time step 2100] Writing solution data... done
+[time step 2200] Writing solution data... done
+[time step 2300] Writing solution data... done
+[time step 2400] Writing solution data... done
+[time step 2500] Writing solution data... done
+[time step 2600] Writing solution data... done
+[time step 2700] Writing solution data... done
+[time step 2800] Writing solution data... done
+[time step 2900] Writing solution data... done
+[time step 3000] Writing solution data... done
+[time step 3100] Writing solution data... done
+[time step 3200] Writing solution data... done
+[time step 3300] Writing solution data... done
+[time step 3400] Writing solution data... done
+[time step 3500] Writing solution data... done
+[time step 3600] Writing solution data... done
+[time step 3700] Writing solution data... done
+[time step 3800] Writing solution data... done
+[time step 3900] Writing solution data... done
+[time step 4000] Writing solution data... done
+[time step 4100] Writing solution data... done
+[time step 4200] Writing solution data... done
+[time step 4300] Writing solution data... done
+[time step 4400] Writing solution data... done
+[time step 4500] Writing solution data... done
+[time step 4600] Writing solution data... done
+[time step 4700] Writing solution data... done
+[time step 4800] Writing solution data... done
+[time step 4900] Writing solution data... done
+[time step 5000] Writing solution data... done
+[time step 5000] Writing restart data... done
+[time step 5100] Writing solution data... done
+[time step 5200] Writing solution data... done
+[time step 5300] Writing solution data... done
+[time step 5400] Writing solution data... done
+[time step 5500] Writing solution data... done
+[time step 5600] Writing solution data... done
+[time step 5700] Writing solution data... done
+[time step 5800] Writing solution data... done
+[time step 5900] Writing solution data... done
+[time step 6000] Writing solution data... done
+[time step 6100] Writing solution data... done
+[time step 6200] Writing solution data... done
+[time step 6300] Writing solution data... done
+[time step 6400] Writing solution data... done
+[time step 6500] Writing solution data... done
+[time step 6600] Writing solution data... done
+[time step 6700] Writing solution data... done
+[time step 6800] Writing solution data... done
+[time step 6900] Writing solution data... done
+[time step 7000] Writing solution data... done
+[time step 7100] Writing solution data... done
+[time step 7200] Writing solution data... done
+[time step 7300] Writing solution data... done
+[time step 7400] Writing solution data... done
+[time step 7500] Writing solution data... done
+[time step 7600] Writing solution data... done
+[time step 7700] Writing solution data... done
+[time step 7800] Writing solution data... done
+[time step 7900] Writing solution data... done
+[time step 8000] Writing solution data... done
+[time step 8100] Writing solution data... done
+[time step 8200] Writing solution data... done
+[time step 8300] Writing solution data... done
+[time step 8400] Writing solution data... done
+[time step 8500] Writing solution data... done
+[time step 8600] Writing solution data... done
+[time step 8700] Writing solution data... done
+[time step 8800] Writing solution data... done
+[time step 8900] Writing solution data... done
+[time step 9000] Writing solution data... done
+[time step 9100] Writing solution data... done
+[time step 9200] Writing solution data... done
+[time step 9300] Writing solution data... done
+[time step 9400] Writing solution data... done
+[time step 9500] Writing solution data... done
+[time step 9600] Writing solution data... done
+[time step 9700] Writing solution data... done
+[time step 9800] Writing solution data... done
+[time step 9900] Writing solution data... done
+[time step 10000] Writing solution data... done
+[time step 10000] Writing restart data... done
+#PETSc Option Table entries:
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:view.log
+-options_left
+-probes probes.yaml
+-velocity_ksp_atol 1e-12
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
