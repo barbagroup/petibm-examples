@@ -10,7 +10,7 @@ Package version last used indicated between parenthesis.
   * [OpenMPI](https://www.open-mpi.org) (`3.1.4`)
   * [PETSc](https://www.mcs.anl.gov/petsc) (`3.11.4`)
   * [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit-archive) (`10.1`)
-  * [AmgX](https://github.com/NVIDIA/AMGX) (commit `a46b311`)
+  * [AmgX](https://github.com/NVIDIA/AMGX) (commit `cf285c1`)
 * [PetibmPy](https://github.com/mesnardo/petibmpy) (`develop`)
 
 ## List of examples
@@ -23,6 +23,10 @@ Package version last used indicated between parenthesis.
   * 2D unsteady flow around a stationary cylinder at Reynolds number 100
 * Decoupled IBPM
   * 2D unsteady flow around a stationary cylinder at Reynolds number 100
+  * 2D flapping wing at Reynolds number 75
+  * 2D flow around an inline oscillating cylinder at Reynolds number 100
+  * 3D steady flow around an inclined flat plate at Reynolds number 100
+  * 3D steady-flow around a sphere
 
 ## Contact
 
