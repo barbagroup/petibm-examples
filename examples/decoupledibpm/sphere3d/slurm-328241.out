@@ -1,0 +1,306 @@
+
+*** SLURM JOB SCRIPT ***
+#!/usr/bin/env bash
+
+#SBATCH --job-name="sphere3d"
+#SBATCH --output=slurm-%j.out
+#SBATCH --error=slurm-%j.err
+#SBATCH --partition=small-gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=20
+#SBATCH --time=02:00:00
+
+module load singularity/3.4.2
+module load openmpi/gcc/64/3.1.4
+
+printf "\n*** SLURM JOB SCRIPT ***\n"
+cat pegasus.slurm
+
+printf "\n*** PRESENT WORKING DIRECTORY  ***\n"
+pwd
+
+printf "\n*** NVIDIA-SMI ***\n"
+export CUDA_VISIBLE_DEVICES=0,1
+nvidia-smi
+
+indir="/mnt"
+image="/SEAS/home/mesnardo/images/petibm-0.4.2_xenial.sif"
+
+declare -a folders=(
+"Re50"
+"Re100"
+"Re150"
+"Re200"
+"Re250"
+"Re300"
+)
+
+for folder in "${folders[@]}"; do
+	printf "\n\n*** Reynolds number: $folder ***\n\n"
+	simudir="/lustre/groups/barbalab/sphere3d/$folder"
+	mpirun singularity exec \
+		--bind $simudir:$indir \
+		--nv $image petibm-decoupledibpm \
+		-directory $indir \
+		-options_left \
+		-log_view ascii:$indir/view.log
+done
+
+*** PRESENT WORKING DIRECTORY  ***
+/lustre/groups/barbalab/sphere3d
+
+*** NVIDIA-SMI ***
+Thu Oct 31 19:49:37 2019       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  Tesla V100-PCIE...  Off  | 00000000:3B:00.0 Off |                    0 |
+| N/A   41C    P0    38W / 250W |      0MiB / 16130MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla V100-PCIE...  Off  | 00000000:D8:00.0 Off |                    0 |
+| N/A   44C    P0    36W / 250W |      0MiB / 16130MiB |      0%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+
+
+*** Reynolds number: Re50 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
+
+
+*** Reynolds number: Re100 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
+
+
+*** Reynolds number: Re150 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
+
+
+*** Reynolds number: Re200 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
+
+
+*** Reynolds number: Re250 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.
+
+
+*** Reynolds number: Re300 ***
+
+AMGX version 2.1.0.131-opensource
+Built on Oct 18 2019, 00:32:49
+Compiled with CUDA Runtime 10.1, using CUDA driver 10.1
+Cannot read file as JSON object, trying as AMGX config
+Cannot read file as JSON object, trying as AMGX config
+Converting config string to current config version
+Parsing configuration string: exception_handling=1 ; 
+Using Normal MPI (Hostbuffer) communicator...
+[time step 0] Writing solution data... done
+Completed initialization stage
+[time step 500] Writing solution data... done
+[time step 500] Writing restart data... done
+[time step 1000] Writing solution data... done
+[time step 1000] Writing restart data... done
+[time step 1500] Writing solution data... done
+[time step 1500] Writing restart data... done
+[time step 2000] Writing solution data... done
+[time step 2000] Writing restart data... done
+[time step 2500] Writing solution data... done
+[time step 2500] Writing restart data... done
+#PETSc Option Table entries:
+-directory /mnt
+-forces_ksp_type preonly
+-forces_pc_factor_mat_solver_type superlu_dist
+-forces_pc_type lu
+-log_view ascii:/mnt/view.log
+-options_left
+-velocity_ksp_atol 1e-6
+-velocity_ksp_max_it 1000
+-velocity_ksp_rtol 0.0
+-velocity_ksp_type bcgs
+-velocity_pc_jacobi_type diagonal
+-velocity_pc_type jacobi
+#End of PETSc Option Table entries
+There are no unused options.

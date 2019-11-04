@@ -1,0 +1,11 @@
+# Figures to include in the thesis.
+# 2D lid-driven cavity flow.
+examples/navierstokes/figures/liddrivencavity2d_centerline_velocities.png
+examples/navierstokes/liddrivencavity2dRe100/figures/wz_0001000.png
+examples/navierstokes/liddrivencavity2dRe1000/figures/wz_0010000.png
+examples/navierstokes/liddrivencavity2dRe3200/figures/wz_0025000.png
+examples/navierstokes/liddrivencavity2dRe5000/figures/wz_0060000.png
+# 3D flow around an inclined flat plate (Re=100).
+examples/decoupledibpm/flatplate3dRe100_GPU/figures/force_coefficients.png
+# 3D steady flow around a sphere.
+examples/decoupledibpm/sphere3d/figures/drag_coefficient.png
