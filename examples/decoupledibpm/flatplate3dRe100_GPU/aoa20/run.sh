@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Run simulation.
+# Run simulation locally or within Singularity container.
 
 descr="*** 3D flow around inclined plate (AoA=20) at Reynolds number 100 ***"
 
-# Hardware configuration
+# Hardware configuration.
 np=4  # number of MPI processes
 export CUDA_VISIBLE_DEVICES=0  # GPU device indices
 
@@ -18,16 +18,20 @@ print_usage() {
 	printf "\n"
 }
 
+prepend_path() {
+	if [ -d "$1" ]; then
+		export PATH="$1:"$PATH
+	else
+		printf "[WARNING] $1: not a valid directory"
+	fi
+}
 
-scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
-simg=""
-mpidir=""
-
+# Parse command-line options.
 while getopts 'm:p:s:h' flag; do
 	case "${flag}" in
 		m) mpidir=`realpath "${OPTARG}"` ;;
 		s) simg=`realpath "${OPTARG}"` ;;
-		p) petibmdir=`realpath "${OPTARGS}"` ;;
+		p) petibmdir=`realpath "${OPTARG}"` ;;
 		h) print_usage
 		   exit 0 ;;
 		*) print_usage
@@ -35,27 +39,27 @@ while getopts 'm:p:s:h' flag; do
 	esac
 done
 
-export PATH="$mpidir/bin":$PATH
-export PATH="$petibmdir/bin":$PATH
+printf "\n\n$descr\n\n"
 
-echo ""
-echo ""
-echo $descr
-echo ""
-echo ""
+prepend_path $mpidir/bin
 
+printf "\n[INFO] MPI version:\n"
 mpiexec --version
+printf "\n[INFO] nvidia-smi output:\n"
 nvidia-smi
 
-cd $scriptdir
+scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
+cd $scriptdir > /dev/null
 if [ -f "$simg" ]; then
-	echo "[INFO] Running within Singularity container"
-	mpiexec -np $np singularity exec --nv $simg \
+	printf "\n[INFO] Running within Singularity container\n"
+	mpiexec -np $np singularity exec --nv --bind $scriptdir:/mnt $simg \
 		petibm-decoupledibpm \
+		-directory /mnt \
 		-options_left \
 		-log_view ascii:view.log
 else
-	echo "[INFO] Running locally"
+	printf "\n[INFO] Running locally\n"
+	prepend_path $petibmdir/bin
 	mpiexec -np $np petibm-decoupledibpm \
 		-options_left \
 		-log_view ascii:view.log

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Run simulations.
+# Run simulations locally or within a Singularity container.
 
 descr="*** 3D flow around inclined flate plate at Reynolds number 100 ***"
 
 print_usage() {
 	printf "usage: ./run.sh [-h] [-p DIR] [-m DIR] [-s IMAGE]\n\n"
-	printf "Run the simulation locally or within a Singularity container.\n\n"
+	printf "Run the simulations locally or within a Singularity container.\n\n"
 	printf "Options:\n\n"
 	printf "  -h          Show this message and exit.\n"
 	printf "  -m DIR      MPI installation directory.\n"
@@ -14,6 +14,7 @@ print_usage() {
 	printf "\n"
 }
 
+# Parse command-line options.
 while getopts 'm:p:s:h' flag; do
 	case "${flag}" in
 		m) mpidir=`realpath "${OPTARG}"` ;;
@@ -25,7 +26,6 @@ while getopts 'm:p:s:h' flag; do
 		   exit 1 ;;
 	esac
 done
-
 
 declare -a folders=(
 "aoa0"
@@ -40,15 +40,10 @@ declare -a folders=(
 "aoa90"
 )
 
+printf "\n\n$descr\n\n"
+
 scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
-
-echo ""
-echo ""
-echo $descr
-echo ""
-echo ""
-
-cd $scriptdir
+cd $scriptdir > /dev/null
 for folder in "${folders[@]}"
 do
 	$folder/run.sh "$@"

@@ -60,21 +60,21 @@ pyplot.rc('font', family='serif', size=12)
 fig, (ax1, ax2) = pyplot.subplots(nrows=2, figsize=(6.0, 6.0), sharex=True)
 ax1.set_ylabel('Drag coefficient')
 ax1.scatter(angles, cd, label='PetIBM',
-            marker='x', s=40, facecolors='black', edgecolors='none')
+            marker='s', s=40, facecolor='C0', zorder=3)
 ax1.scatter(*cd_taira_exp, label='Taira et al. (2007) - exp.',
-            marker='o', s=40, facecolors='none', edgecolors='C0')
+            marker='o', s=40, facecolor='none', edgecolor='black')
 ax1.scatter(*cd_taira_num, label='Taira et al. (2007) - num.',
-            marker='s', s=40, facecolors='C2', edgecolors='none')
+            marker='o', s=40, facecolor='black')
 ax1.set_ylim(0.0, 2.0)
 ax1.legend(loc='upper left', frameon=False)
 ax2.set_xlabel('Angle of attack (deg)')
 ax2.set_ylabel('Lift coefficient')
 ax2.scatter(angles, cl, label='PetIBM',
-            marker='x', s=40, facecolors='black', edgecolors='none')
+            marker='s', s=40, facecolor='C0', zorder=3)
 ax2.scatter(*cl_taira_exp, label='Taira et al. (2007) - exp.',
-            marker='o', s=40, facecolors='none', edgecolors='C0')
+            marker='o', s=40, facecolor='none', edgecolor='black')
 ax2.scatter(*cl_taira_num, label='Taira et al. (2007) - num.',
-            marker='s', s=40, facecolors='C2', edgecolors='none')
+            marker='o', s=40, facecolor='black')
 ax2.set_xlim(0.0, 90.0)
 ax2.set_ylim(0.0, 1.5)
 fig.tight_layout()
