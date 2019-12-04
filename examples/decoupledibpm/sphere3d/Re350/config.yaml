@@ -1,0 +1,89 @@
+# 236x156x156 (5743296)
+mesh:
+- direction: x
+  start: -10.0
+  subDomains:
+  - cells: 30
+    end: -6.0
+    stretchRatio: 0.9090909091
+  - cells: 80
+    end: -4.0
+    stretchRatio: 1.0
+  - cells: 126
+    end: 10.0
+    stretchRatio: 1.02
+- direction: y
+  start: -10.0
+  subDomains:
+  - cells: 38
+    end: -1.0
+    stretchRatio: 0.9090909091
+  - cells: 80
+    end: 1.0
+    stretchRatio: 1.0
+  - cells: 38
+    end: 10.0
+    stretchRatio: 1.1
+- direction: z
+  start: -10.0
+  subDomains:
+  - cells: 38
+    end: -1.0
+    stretchRatio: 0.9090909091
+  - cells: 80
+    end: 1.0
+    stretchRatio: 1.0
+  - cells: 38
+    end: 10.0
+    stretchRatio: 1.1
+
+flow:
+  nu: 0.002857142857142857
+  initialVelocity: [1.0, 0.0, 0.0]
+  boundaryConditions:
+  - location: xMinus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+    w: [DIRICHLET, 0.0]
+  - location: xPlus
+    u: [CONVECTIVE, 1.0]
+    v: [CONVECTIVE, 1.0]
+    w: [CONVECTIVE, 1.0]
+  - location: yMinus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+    w: [DIRICHLET, 0.0]
+  - location: yPlus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+    w: [DIRICHLET, 0.0]
+  - location: zMinus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+    w: [DIRICHLET, 0.0]
+  - location: zPlus
+    u: [DIRICHLET, 1.0]
+    v: [DIRICHLET, 0.0]
+    w: [DIRICHLET, 0.0]
+
+parameters:
+  dt: 0.005
+  startStep: 0
+  nt: 50000
+  nsave: 2500
+  nrestart: 5000
+  convection: ADAMS_BASHFORTH_2
+  diffusion: CRANK_NICOLSON
+  velocitySolver:
+    type: CPU
+    config: config/velocity_solver.info
+  poissonSolver:
+    type: GPU
+    config: config/poisson_solver.info
+  forcesSolver:
+    type: GPU
+    config: config/forces_solver.info
+
+bodies:
+  - type: points
+    file: sphere.body

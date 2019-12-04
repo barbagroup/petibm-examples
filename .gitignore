@@ -8,6 +8,7 @@ iterations-*.txt
 .logamgx
 logs
 solution
+postprocessing
 
 # Ignore Python compiled files
 __pycache__
