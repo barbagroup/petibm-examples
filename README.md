@@ -29,6 +29,7 @@ Package version last used indicated between parenthesis.
   * 2D flow around an inline oscillating cylinder at Reynolds number 100
   * 3D steady flow around an inclined flat plate at Reynolds number 100
   * 3D steady-flow around a sphere
+  * 3D unsteady flow around a sphere at Reynolds number 350
 
 ## Contact
 
