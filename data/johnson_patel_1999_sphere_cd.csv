@@ -1,0 +1,18 @@
+# Drag coefficient on a sphere vs. Reynolds number from numerical simulations.
+#
+# Data digitized from Figure 5 of Johnson & Patel (1999)
+#
+# Flow past a sphere up to Reynolds number of 300.
+# JFM 1999; 378: 19-70.
+# doi: 10.1017/S0022112098003206.
+#
+# Digitized by mesnardo with [WebPlotDigitizer](https://apps.automeris.io/wpd/).
+# Data point at Re=300 was extracted from the text.
+#
+# Re, CD
+25, 2.3655913978494625
+50, 1.580645161290323
+100, 1.102150537634409
+150, 0.9086021505376345
+200, 0.7903225806451615
+300, 0.656

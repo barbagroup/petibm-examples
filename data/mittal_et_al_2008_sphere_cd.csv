@@ -1,0 +1,16 @@
+# Drag coefficient on a sphere vs. Reynolds number from numerical simulations.
+#
+# Data digitized from Figure 17b of Mittal et al. (2008)
+#
+# A versatile sharp interface immersed boundary method for incompressible flows
+# with complex boundaries.
+# JCP 2008; 227(10): 4825-4852.
+# doi: 10.016/j.jcp.2008.01.028.
+#
+# Digitized by mesnardo with [WebPlotDigitizer](https://apps.automeris.io/wpd/).
+#
+# Re, CD
+100, 1.0785190751376141
+150, 0.8789973699747732
+300, 0.6689627204360713
+350, 0.6271447229527847
