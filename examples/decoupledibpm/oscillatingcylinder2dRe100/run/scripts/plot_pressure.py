@@ -9,11 +9,11 @@ import petibmpy
 
 show_figure = True  # if True, display the figure(s)
 simudir = pathlib.Path(__file__).absolute().parents[1]
-datadir = simudir / 'solution'
+datadir = simudir / 'output'
 
 # Load the grid from file.
 name = 'p'  # name of the pressure variable
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 x, y = petibmpy.read_grid_hdf5(filepath, name)
 
 # Load the pressure at phase angles 0 deg during the last period.

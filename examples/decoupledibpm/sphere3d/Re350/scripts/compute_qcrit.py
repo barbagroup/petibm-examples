@@ -8,9 +8,9 @@ import petibmpy
 
 name = 'qcrit'
 simudir = pathlib.Path(__file__).absolute().parents[1]
-gridpath = simudir / 'grid.h5'
-datadir = simudir / 'solution'
-outdir = simudir / 'postprocessing' / name
+datadir = simudir / 'output'
+gridpath = datadir / 'grid.h5'
+outdir = datadir / 'postprocessing' / name
 outdir.mkdir(parents=True, exist_ok=True)
 
 # Read the cell-centered grid.

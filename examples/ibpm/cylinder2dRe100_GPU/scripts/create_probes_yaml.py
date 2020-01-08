@@ -8,7 +8,7 @@ import petibmpy
 # Create configuration for a volume probe.
 probe = petibmpy.ProbeVolume('probe-p', 'p',
                              box=((-0.75, 0.75), (-0.75, 0.75)),
-                             viewer='hdf5', path='solution/probe-p.h5',
+                             viewer='hdf5', path='probe-p.h5',
                              n_sum=1000)
 # Save configuration into YAML file.
 simudir = pathlib.Path(__file__).absolute().parents[1]

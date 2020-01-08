@@ -54,19 +54,18 @@ show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure
 
 simudir = pathlib.Path(__file__).absolute().parents[1]
+datadir = simudir / 'output'
 rootdir = simudir.parents[2]
 
-
 # Load data from Ghia et al. (1982).
-datadir = rootdir / 'data'
-filepath = datadir / 'ghia_et_al_1982_lid_driven_cavity.dat'
+filepath = rootdir / 'data' / 'ghia_et_al_1982_lid_driven_cavity.dat'
 yu_g, uc_g, xv_g, vc_g = load_data_ghia_et_al_1982(filepath, Re)
 
 # Load gridlines and velocity fields.
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 xu, yu = petibmpy.read_grid_hdf5(filepath, 'u')
 xv, yv = petibmpy.read_grid_hdf5(filepath, 'v')
-filepath = simudir / 'solution' / f'{timestep:0>7}.h5'
+filepath = datadir / f'{timestep:0>7}.h5'
 u = petibmpy.read_field_hdf5(filepath, 'u')
 v = petibmpy.read_field_hdf5(filepath, 'v')
 

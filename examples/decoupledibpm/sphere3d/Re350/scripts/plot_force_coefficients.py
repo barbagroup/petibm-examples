@@ -8,6 +8,7 @@ import petibmpy
 
 
 simudir = pathlib.Path(__file__).absolute().parents[1]
+datadir = simudir / 'output'
 show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure as PNG
 
@@ -18,7 +19,7 @@ A = numpy.pi * R**2
 coeff = 1 / (0.5 * rho * U_inf**2 * A)
 
 # Load forces from file and compute force coefficients.
-filepath = simudir / 'forces-0.txt'
+filepath = datadir / 'forces-0.txt'
 t, fx, fy, fz = petibmpy.read_forces(filepath)
 cd, cl, cz = petibmpy.get_force_coefficients(fx, fy, fz, coeff=coeff)
 clz = numpy.sqrt(cl**2 + cz**2)
@@ -47,7 +48,7 @@ fig.tight_layout()
 
 if save_figure:
     # Save figure as a PNG.
-    figdir = pathlib.Path(__file__).absolute().parents[1] / 'figures'
+    figdir = simudir / 'figures'
     figdir.mkdir(parents=True, exist_ok=True)
     filepath = figdir / 'force_coefficients.png'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')

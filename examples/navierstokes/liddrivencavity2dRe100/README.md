@@ -6,9 +6,9 @@ Run the example:
 petibm-navierstokes -options_left -log_view ascii:view.log
 ```
 
-The simulation completed $1,000$ time steps in a few seconds on Hopper:
+The simulation completed 1,000 time steps in a couple seconds using
 
-* 1 MPI process (Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz)
+* 1 MPI process (Intel(R) Core(TM) i7-3770 CPU @ 3.4GHz)
 
 Plot the centerline velocity components and compare with the numerical results from Ghia et al. (1982):
 

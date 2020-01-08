@@ -11,6 +11,7 @@ from kinematics import D, Um
 
 display_figure = True  # if True, display the figure(s).
 simudir = pathlib.Path(__file__).absolute().parents[1]
+datadir = simudir / 'output'
 
 pyplot.rc('font', family='serif', size=12)
 nrows, ncols = 3, 2
@@ -22,7 +23,7 @@ for row in range(nrows):
     for col in range(ncols):
         name = 'u' if col == 0 else 'v'
         time, phase = times[row], phases[row]
-        filepath = simudir / 'solution' / f'probe{phase}-{name}.h5'
+        filepath = datadir / f'probe{phase}-{name}.h5'
         for xi in x_locs:
             probe = petibmpy.ProbeVolume(name, name)
             (x, y), u = probe.read_hdf5(filepath, time)

@@ -49,8 +49,9 @@ for name in field_names:
     subdata = {'grids': [], 'fields': []}
     for n in ncells:
         simudir = rootdir / str(n)
-        grid = petibmpy.read_grid_hdf5(simudir / 'grid.h5', name)
-        filepath = simudir / 'solution' / f'{timestep:0>7}.h5'
+        datadir = simudir / 'output'
+        grid = petibmpy.read_grid_hdf5(datadir / 'grid.h5', name)
+        filepath = datadir / f'{timestep:0>7}.h5'
         field = petibmpy.read_field_hdf5(filepath, name)
         subdata['grids'].append(grid)
         subdata['fields'].append(field)

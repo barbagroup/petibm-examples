@@ -38,7 +38,7 @@ coeff = 1 / (0.5 * rho * U_inf**2 * A)
 cd = []
 for Re_ in Re:
     simudir = rootdir / f'Re{Re_}'
-    filepath = simudir / 'forces-0.txt'
+    filepath = simudir / 'output' / 'forces-0.txt'
     _, fx, _, _ = petibmpy.read_forces(filepath)
     cd.append(coeff * fx[-1])
 

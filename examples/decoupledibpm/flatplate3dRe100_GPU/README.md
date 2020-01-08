@@ -15,7 +15,7 @@ for angle in ${angles[@]}; do
 done
 ```
 
-Each simulation completes in about 10 minutes when using:
+Each simulation completes in less than 10 minutes when using
 
 * 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz),
 * 1 NVIDIA K40 GPU device.

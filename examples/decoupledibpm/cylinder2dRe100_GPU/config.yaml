@@ -70,7 +70,7 @@ probes:
   type: VOLUME
   field: p
   viewer: hdf5
-  path: solution/probe-p.h5
+  path: probe-p.h5
   n_sum: 1000
   box:
     x: [-0.75, 0.75]

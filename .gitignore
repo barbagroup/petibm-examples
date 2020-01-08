@@ -2,13 +2,11 @@
 .vscode
 
 # Ignore output of PetIBM simulation
-forces-*.txt
-grid.h5
-iterations-*.txt
+output
 .logamgx
-logs
-solution
-postprocessing
+stdout.txt
+stderr.txt
+slurm*
 
 # Ignore Python compiled files
 __pycache__

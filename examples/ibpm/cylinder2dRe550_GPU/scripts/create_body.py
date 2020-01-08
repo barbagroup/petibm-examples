@@ -13,7 +13,7 @@ ds = 0.01  # distance between two consecutive points
 
 # Create coordinates of the circle.
 n = numpy.ceil(2 * numpy.pi * R / ds)  # number of divisions
-theta = numpy.linspace(0.0, 2.0 * numpy.pi, num=n)[:-1]
+theta = numpy.linspace(0.0, 2.0 * numpy.pi, num=n + 1)[:-1]
 x, y = xc + R * numpy.cos(theta), yc + R * numpy.sin(theta)
 
 # Save coordinates into file.

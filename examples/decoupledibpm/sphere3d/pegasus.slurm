@@ -22,7 +22,7 @@ export CUDA_VISIBLE_DEVICES=0,1
 nvidia-smi
 
 indir="/mnt"
-image="/SEAS/home/mesnardo/images/petibm-0.4.2_xenial.sif"
+image="/SEAS/home/mesnardo/images/petibm-0.5_xenial.sif"
 
 declare -a folders=(
 "Re50"

@@ -20,15 +20,16 @@ Package version last used indicated between parenthesis.
 * Navier-Stokes solver
   * Convergence analysis (2D lid-driven cavity flow at Reynolds number 100)
   * 2D lid-driven cavity flow at Reynolds numbers 100, 1000, 3200, and 5000
-* IBPM
-  * 2D flow around a stationary cylinder at Reynolds numbers 40, 550, and 3000
+* Immersed boundary projection method (IBPM)
+  * 2D flow around an impulsively started cylinder at Reynolds numbers 40, 550, and 3000
   * 2D unsteady flow around a stationary cylinder at Reynolds number 100
 * Decoupled IBPM
   * 2D unsteady flow around a stationary cylinder at Reynolds number 100
+  * 2D flow around an impulsively started cylinder at Reynolds number 550.
   * 2D flapping wing at Reynolds number 75
   * 2D flow around an inline oscillating cylinder at Reynolds number 100
   * 3D steady flow around an inclined flat plate at Reynolds number 100
-  * 3D steady-flow around a sphere
+  * 3D steady-flow around a sphere at Reynolds numbers 50, 100, 150, 200, 250, and 300
   * 3D unsteady flow around a sphere at Reynolds number 350
 
 ## Contact

@@ -13,10 +13,10 @@ show_figure = True  # if True, display the figure
 
 # Set the simulation and data directories.
 simudir = pathlib.Path(__file__).absolute().parents[1]
-datadir = simudir / 'solution'
+datadir = simudir / 'output'
 
 # Load the gridlines from file.
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 x, y = petibmpy.read_grid_hdf5(filepath, name)
 # Load the vorticity field from file.
 filepath = datadir / f'{timestep:0>7}.h5'

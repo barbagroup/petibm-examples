@@ -24,7 +24,8 @@ data = {}
 # Load the force from the present simulation and get force coefficients.
 key = 'PetIBM'
 simudir = pathlib.Path(__file__).absolute().parents[1]
-filepath = simudir / 'forces-0.txt'
+datadir = simudir / 'output'
+filepath = datadir / 'forces-0.txt'
 bodypath = simudir / 'ellipse.body'
 data[key] = flapping.get_CD_CL('petibm', filepath, bodypath)
 data[key]['kwargs'] = {'color': 'C0', 'linestyle': '-', 'linewidth': 1,

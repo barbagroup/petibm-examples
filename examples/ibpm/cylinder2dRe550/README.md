@@ -6,7 +6,7 @@ Run the example:
 mpiexec -np 2 petibm-ibpm -options_left -log_view ascii:view.log
 ```
 
-The simulation completed $1,200$ time steps in about 1 hour and 30 minutes, using:
+The simulation completed 1,200 time steps in about 35 minutes using
 
 * 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
 

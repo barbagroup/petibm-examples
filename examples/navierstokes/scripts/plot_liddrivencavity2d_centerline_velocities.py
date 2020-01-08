@@ -67,16 +67,17 @@ ax2.set_ylabel('v')
 
 for Re, timestep in zip(Res, timesteps):
     # Load data from Ghia et al. (1982).
-    datadir = rootdir / 'data'
-    filepath = datadir / 'ghia_et_al_1982_lid_driven_cavity.dat'
+    adir = rootdir / 'data'
+    filepath = adir / 'ghia_et_al_1982_lid_driven_cavity.dat'
     yu_g, uc_g, xv_g, vc_g = load_data_ghia_et_al_1982(filepath, str(Re))
 
     # Load gridlines and velocity fields.
     simudir = maindir / f'liddrivencavity2dRe{Re}'
-    filepath = simudir / 'grid.h5'
+    datadir = simudir / 'output'
+    filepath = datadir / 'grid.h5'
     xu, yu = petibmpy.read_grid_hdf5(filepath, 'u')
     xv, yv = petibmpy.read_grid_hdf5(filepath, 'v')
-    filepath = simudir / 'solution' / f'{timestep:0>7}.h5'
+    filepath = datadir / f'{timestep:0>7}.h5'
     u = petibmpy.read_field_hdf5(filepath, 'u')
     v = petibmpy.read_field_hdf5(filepath, 'v')
 

@@ -13,7 +13,7 @@ MPI_DIR="$HOME/software/openmpi/3.1.4/linux-gnu-opt"
 export PATH="$MPI_DIR/bin":$PATH
 export PETSC_DIR="$HOME/software/petsc/3.11.4"
 export PETSC_ARCH="linux-gnu-openmpi-opt"
-PETIBM_DIR="$HOME/software/petibm/0.4.2/linux-gnu-openmpi-opt"
+PETIBM_DIR="$HOME/software/petibm/0.5/linux-gnu-openmpi-opt"
 YAMLCPP_DIR="$HOME/software/yaml-cpp/0.6.2/linux-gnu-opt"
 
 
@@ -27,3 +27,6 @@ cmake $rootdir -DCMAKE_INSTALL_PREFIX=$installdir \
 	-DYAMLCPP_DIR=$YAMLCPP_DIR \
 	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON \
 	-DCMAKE_BUILD_TYPE=RELEASE
+
+make all
+make install

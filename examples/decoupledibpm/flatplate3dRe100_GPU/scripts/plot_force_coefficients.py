@@ -30,7 +30,7 @@ angles = numpy.arange(0, 90 + 1, 10, dtype=numpy.int32)
 cd, cl = [], []
 for angle in angles:
     simudir = rootdir / f'aoa{angle}'
-    filepath = simudir / 'forces-0.txt'
+    filepath = simudir / 'output' / 'forces-0.txt'
     t, fx, fy, _ = petibmpy.read_forces(filepath)
     fx_mean, fy_mean = petibmpy.get_time_averaged_values(t, fx, fy,
                                                          limits=time_limits)

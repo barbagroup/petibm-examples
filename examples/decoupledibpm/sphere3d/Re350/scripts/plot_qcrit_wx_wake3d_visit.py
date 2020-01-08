@@ -15,7 +15,8 @@ from visitplot import *
 
 
 simudir = pathlib.Path(__file__).absolute().parents[1]
-xdmfpath = simudir / 'postprocessing' / 'qcrit_wx_cc.xmf'
+datadir = simudir / 'output'
+xdmfpath = datadir / 'postprocessing' / 'qcrit_wx_cc.xmf'
 config_view = simudir / 'scripts' / 'visit_view3d.yaml'
 figdir = simudir / 'figures'
 prefix = 'qcrit_wx_wake3d_'

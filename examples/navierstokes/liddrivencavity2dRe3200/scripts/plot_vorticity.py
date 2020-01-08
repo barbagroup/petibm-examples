@@ -10,14 +10,15 @@ import petibmpy
 show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure
 simudir = pathlib.Path(__file__).absolute().parents[1]
+datadir = simudir / 'output'
 
 # Load the grid lines from file.
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 x, y = petibmpy.read_grid_hdf5(filepath, 'wz')
 
 # Load the vorticity field from file.
 timestep = 25000
-filepath = simudir / 'solution' / f'{timestep:0>7}.h5'
+filepath = datadir / f'{timestep:0>7}.h5'
 wz = petibmpy.read_field_hdf5(filepath, 'wz')
 
 # Plot the contours of the vorticity.
@@ -28,9 +29,9 @@ ax.set_ylabel('y')
 levels = numpy.linspace(-5.0, 5.0, num=21)
 ax.contourf(x, y, wz, levels=levels, extend='both')
 ax.contour(x, y, wz, levels=levels, colors='black')
+ax.axis('scaled', adjust='box')
 ax.set_xlim(0.0, 1.0)
 ax.set_ylim(0.0, 1.0)
-ax.axis('scaled', adjust='box')
 fig.tight_layout()
 
 if show_figure:

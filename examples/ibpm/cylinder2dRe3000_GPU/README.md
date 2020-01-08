@@ -7,7 +7,7 @@ export CUDA_VISIBLE_DEVICES=0
 mpiexec -np 4 petibm-ibpm -options_left -log_view ascii:view.log
 ```
 
-The simulation completed $3,000$ time steps in about $6$ minutes, using:
+The simulation completed 3,000 time steps in about 45 minutes, using:
 
 * 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
 * 1 NVIDIA K40 GPU device

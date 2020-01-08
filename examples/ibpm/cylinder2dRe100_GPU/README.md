@@ -7,7 +7,7 @@ export CUDA_VISIBLE_DEVICES=0
 mpiexec -np 2 petibm-ibpm -options_left -log_view ascii:view.log
 ```
 
-The simulation completed $20,000$ time steps in about $50$ minutes, using:
+The simulation completed 20,000 time steps in about $50$ minutes using:
 
 * 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
 * 1 NVIDIA K40 GPU device
@@ -42,7 +42,7 @@ Compute the vorticity field at saved time steps:
 petibm-vorticity
 ```
 
-Plot the contours of the vorticity field after $20,000$ time steps:
+Plot the contours of the vorticity field after 20,000 time steps:
 
 ```shell
 python scripts/plot_vorticity.py

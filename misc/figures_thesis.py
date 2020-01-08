@@ -24,7 +24,7 @@ filenames = []
 for filepath in filepaths:
     filename, filedir = filepath.name, filepath.parent
     prefix = '_'.join([e for e in filedir.parts[n_parts + 2:]
-                       if e != 'figures'])
+                       if e not in ['figures', 'run']])
     filenames.append('_'.join([prefix, filename]).lstrip('_'))
 
 # Copy figures to output directory.

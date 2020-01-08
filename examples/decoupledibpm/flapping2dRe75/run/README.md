@@ -6,7 +6,7 @@ Run the simulation locally from the current directory:
 ./run.sh -m /home/mesnardo/software/openmpi/3.1.4/linux-gnu-opt -p .. > stdout.txt 2> stderr.txt
 ```
 
-The simulation completes 3200 time steps in about 5 minutes when using:
+The simulation completes 3200 time steps in about 8 minutes when using:
 
 * 2 CPU processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz),
 * 1 NVIDIA K40 GPU device.

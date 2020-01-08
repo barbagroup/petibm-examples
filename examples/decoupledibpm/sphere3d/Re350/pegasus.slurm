@@ -21,9 +21,9 @@ printf "\n*** NVIDIA-SMI ***\n"
 export CUDA_VISIBLE_DEVICES=0,1
 nvidia-smi
 
-simudir="/lustre/groups/barbalab/Re350-2"
+simudir="/lustre/groups/barbalab/sphere3d/Re350"
 indir="/mnt"
-image="/SEAS/home/mesnardo/images/petibm-0.4.2_xenial.sif"
+image="/SEAS/home/mesnardo/images/petibm-0.5_xenial.sif"
 
 mpirun singularity exec \
 	--bind $simudir:$indir \

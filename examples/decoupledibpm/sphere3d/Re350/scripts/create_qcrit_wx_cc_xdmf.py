@@ -8,7 +8,8 @@ import petibmpy
 
 
 simudir = pathlib.Path(__file__).absolute().parents[1]
-outdir = simudir / 'postprocessing'
+datadir = simudir / 'output'
+outdir = datadir / 'postprocessing'
 outdir.mkdir(parents=True, exist_ok=True)
 
 # Get temporal parameters.

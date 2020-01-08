@@ -14,7 +14,8 @@ show_figure = True  # if True, display the figure(s).
 
 # Load forces from file.
 simudir = pathlib.Path(__file__).absolute().parents[1]
-filepath = simudir / 'forces-0.txt'
+datadir = simudir / 'output'
+filepath = datadir / 'forces-0.txt'
 t, fx, fy = petibmpy.read_forces(filepath)
 
 # Convert forces to force coefficients.

@@ -11,13 +11,14 @@ import petibmpy
 show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure as PNG
 simudir = pathlib.Path(__file__).absolute().parents[1]
+datadir = simudir / 'output'
 
 # Load vorticity grid and field at final time step.
 name = 'wz'
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 x, y = petibmpy.read_grid_hdf5(filepath, name)
 timestep = 1200
-filepath = simudir / 'solution' / f'{timestep:0>7}.h5'
+filepath = datadir / f'{timestep:0>7}.h5'
 wz = petibmpy.read_field_hdf5(filepath, name)
 
 # Load coordinates of the immersed boundary.

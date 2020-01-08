@@ -26,7 +26,7 @@ show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure as PNG
 
 # Load drag force from file and compute drag coefficient.
-filepath = simudir / 'forces-0.txt'
+filepath = simudir / 'output' / 'forces-0.txt'
 t, fx, _ = petibmpy.read_forces(filepath)
 cd = 2 * fx
 

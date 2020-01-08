@@ -14,7 +14,8 @@ show_figure = True  # if True, display the figure(s)
 
 # Load drag force from file.
 simudir = pathlib.Path(__file__).absolute().parents[1]
-filepath = simudir / 'forces-0.txt'
+datadir = simudir / 'output'
+filepath = datadir / 'forces-0.txt'
 t, fx, _ = petibmpy.read_forces(filepath)
 
 # Convert drag to drag coefficient.
@@ -37,7 +38,7 @@ fig.tight_layout()
 figdir = simudir / 'figures'
 figdir.mkdir(parents=True, exist_ok=True)
 filepath = figdir / 'drag_coefficient.png'
-fig.savefig(filepath, dpi=300)
+fig.savefig(filepath, dpi=300, bbox_inches='tight')
 
 if show_figure:
     pyplot.show()

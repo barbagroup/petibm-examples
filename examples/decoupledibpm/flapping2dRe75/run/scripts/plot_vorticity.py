@@ -10,11 +10,11 @@ import petibmpy
 
 
 simudir = pathlib.Path(__file__).absolute().parents[1]  # simulation directory
-datadir = simudir / 'solution'  # directory with field solution files
+datadir = simudir / 'output'  # directory with field solution files
 name = 'wz'  # name of the variable to load and plot
 
 # Load the grid from file.
-filepath = simudir / 'grid.h5'
+filepath = datadir / 'grid.h5'
 grid = petibmpy.read_grid_hdf5(filepath, name)
 
 # Load the time parameters from YAML configuration file.

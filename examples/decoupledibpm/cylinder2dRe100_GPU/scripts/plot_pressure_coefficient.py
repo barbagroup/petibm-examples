@@ -13,7 +13,7 @@ show_figure = True  # if True, display the figure
 
 # Set the simulation and data directories.
 simudir = pathlib.Path(__file__).absolute().parents[1]
-datadir = simudir / 'solution'
+datadir = simudir / 'output'
 
 # Load data from last record of the probe.
 filepath = datadir / 'probe-p.h5'
