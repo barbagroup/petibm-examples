@@ -18,7 +18,7 @@ python scripts/plot_drag_coefficient.py
 
 The figure is saved as a PNG file (`drag_coefficient.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/drag_coefficient.png" alt="drag_coefficient" widht="400">
+<img src="figures/drag_coefficient.png" alt="drag_coefficient" width="400">
 
 **Figure:** History of the drag coefficient for the cylinder at Reynolds number $550$. Comparison with the numerical data of reported by Koumoutsakos & Leonard (1995).
 
@@ -36,7 +36,7 @@ python scripts/plot_vorticity.py
 
 The figure is saved as a PNG file (`wz_0001200.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/wz_0001200.png" alt="vorticity" widht="400">
+<img src="figures/wz_0001200.png" alt="vorticity" width="400">
 
 **Figure:** Contours of the vorticity field at Reynolds number $550$ ($32$ contours between $-32$ and $+32$).
 

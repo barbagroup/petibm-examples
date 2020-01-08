@@ -28,7 +28,7 @@ python scripts/plot_force_coefficients.py
 
 The figure is saved as a PNG file (`force_coefficients.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/force_coefficients.png" alt="force_coefficients" widht="400">
+<img src="figures/force_coefficients.png" alt="force_coefficients" width="400">
 
 **Figure:** Time-averaged lift and drag coefficients for angles of attack of the flat plate between $0$ and $90^o$ ($10$-degree increments). We compare the results with the experimental data reported in Taira et al. (2007).
 

@@ -20,7 +20,7 @@ python scripts/plot_force_coefficients.py
 
 The figure is saved as a PNG file (`force_coefficients.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/force_coefficients.png" alt="force_coefficients" widht="400">
+<img src="figures/force_coefficients.png" alt="force_coefficients" width="400">
 
 **Figure:** History of the force coefficients for the cylinder at Reynolds number $100$.
 
@@ -32,7 +32,7 @@ python scripts/plot_pressure_coefficient.py
 
 The figure is saved as a PNG file (`pressure_coefficient.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/pressure_coefficient.png" alt="drag_coefficient" widht="400">
+<img src="figures/pressure_coefficient.png" alt="drag_coefficient" width="400">
 
 **Figure:** Pressure coefficient interpolated along the surface of the cylinder for Reynolds number $100$. Comparison with the numerical data reported by Li et al. (2016).
 
@@ -50,7 +50,7 @@ python scripts/plot_vorticity.py
 
 The figure is saved as a PNG file (`wz_0020000.png`) in the sub-folder `figures` of the present simulation directory.
 
-<img src="figures/wz_0020000.png" alt="vorticity" widht="400">
+<img src="figures/wz_0020000.png" alt="vorticity" width="400">
 
 **Figure:** Contours of the vorticity field at Reynolds number $100$ (contours between $-3$ and $3$ with increments of $0.4$).
 

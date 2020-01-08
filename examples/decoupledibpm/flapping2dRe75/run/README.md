@@ -19,7 +19,7 @@ python scripts/plot_force_coefficients.py
 
 (The Matplotlib figure is saved as a PNG file in the sub-folder `figures` of the simulation directory.)
 
-![figure1](./figures/force_coefficients.png)
+<img src="figures/force_coefficients.png" alt="force_coefficients" width="400">
 
 **Figure:** History of the lift (top) and drag (bottom) coefficients over 4 periods. We compare the forces obtained with PetIBM to the results from Li et al. (2015), Wang et al. (2004), and Eldredge (2007).
 
