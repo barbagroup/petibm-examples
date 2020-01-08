@@ -41,7 +41,9 @@ data[key]['kwargs'] = {'color': 'C1', 'linestyle': '-', 'linewidth': 1,
 # Data were digitized Li and co-workers from Wang et al. (2004).
 key = 'Wang et al. (2004)'
 data[key] = flapping.get_CD_CL(key)
-data[key]['kwargs'] = {'color': 'C2', 'linestyle': '--', 'linewidth': 1,
+data[key]['kwargs'] = {'marker': 'o', 'color': 'black',
+                       'markerfacecolor': 'none', 'markersize': 4,
+                       'linewidth': 0,
                        'zorder': 2}
 
 # Load numerical data from Eldredge (2007).

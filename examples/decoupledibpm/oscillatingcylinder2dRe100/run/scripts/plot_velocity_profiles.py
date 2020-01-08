@@ -34,7 +34,8 @@ for row in range(nrows):
         ax[row, col].set_xlim(-1.5, 1.5)
         ax[row, col].set_ylim(-1.1, 1.1)
         ax[row, col].text(0.7, 0.8, r'$\phi = {}^o$'.format(phases[row]))
-ax[0, 1].legend(title='$x/D$', loc='center left', prop={'size': 12})
+ax[0, 1].legend(title='$x/D$', loc='center left',
+                prop={'size': 12}, frameon=False)
 fig.tight_layout()
 
 # Save the figure.
