@@ -34,6 +34,18 @@ python scripts/plot_vorticity.py
 
 (The PNG files are saved in the sub-folder `figures` of the simulation directory.)
 
+To compare the vorticity field with the numerical results of Li et al. (2015) during the last flapping cycle:
+
+```shell
+python scripts/plot_vorticity_compare_li_et_al_2015.py
+```
+
+(The PNG file `wz_compare_li_et_al_2015.png` is saved in the sub-folder `figures` of the simulation directory.)
+
+<img src="figures/wz_compare_li_et_al_2015.png" alt="wz_compare_li_et_al_2015" width="800">
+
+**Figure:** Contours of the vorticity field at $t/T = 3$, $3.25$, $3.5$, $3.75$, and $4$ (40 levels uniformly distributed between $-20$ and $20$). We compare results obtained with PetIBM (top) to the data reported in Li et al. (2015) (bottom).
+
 ## References
 
 * Eldredge, J. D. (2007). Numerical simulation of the fluid dynamics of 2D rigid body motion with the vortex particle method. Journal of Computational Physics, 221(2), 626-648.
