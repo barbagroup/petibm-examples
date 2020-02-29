@@ -1,0 +1,53 @@
+mesh:
+  - direction: x
+    start: 0.0
+    subDomains:
+      - end: 1.0
+        cells: 60
+        stretchRatio: 1.0
+  - direction: y
+    start: 0.0
+    subDomains:
+      - end: 1.0
+        cells: 60
+        stretchRatio: 1.0
+
+flow:
+    nu: 0.1
+    initialVelocity: [0.0, 0.0]
+    boundaryConditions:
+      - location: xMinus
+        u: [PERIODIC, 0.0]
+        v: [PERIODIC, 0.0]
+      - location: xPlus
+        u: [PERIODIC, 0.0]
+        v: [PERIODIC, 0.0]
+      - location: yMinus
+        u: [PERIODIC, 0.0]
+        v: [PERIODIC, 0.0]
+      - location: yPlus
+        u: [PERIODIC, 0.0]
+        v: [PERIODIC, 0.0]
+
+parameters:
+    dt: 1e-4
+    startStep: 0
+    nt: 2000
+    nsave: 500
+    nrestart: 1000
+    convection: ADAMS_BASHFORTH_2
+    diffusion: CRANK_NICOLSON
+    velocitySolver:
+      type: CPU
+      config: ../config/velocity_solver.info
+    poissonSolver:
+      type: GPU
+      config: ../config/poisson_solver.info
+    forcesSolver:
+      type: CPU
+      config: ../config/forces_solver.info
+
+bodies:
+  - type: points
+    name: cylinder
+    file: cylinder.body

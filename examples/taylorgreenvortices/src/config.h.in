@@ -1,0 +1,2 @@
+#define PetIBMTaylorGreen_VERSION_MAJOR @PetIBMTaylorGreen_VERSION_MAJOR@
+#define PetIBMTaylorGreen_VERSION_MINOR @PetIBMTaylorGreen_VERSION_MINOR@
