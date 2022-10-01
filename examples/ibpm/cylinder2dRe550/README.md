@@ -3,12 +3,14 @@
 Run the example:
 
 ```shell
+export CUDA_VISIBLE_DEVICES=0
 mpiexec -np 2 petibm-ibpm -options_left -log_view ascii:view.log
 ```
 
-The simulation completed 1,200 time steps in about 35 minutes using
+The simulation completed 1,200 time steps in about 5 minutes using:
 
 * 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+* 1 NVIDIA K40 GPU device
 
 Plot the history of the drag coefficient and compare with numerical data from Koumoutsakos and Leonard (1995):
 

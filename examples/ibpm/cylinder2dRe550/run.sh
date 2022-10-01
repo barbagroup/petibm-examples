@@ -5,6 +5,7 @@ descr="*** 2D flow around stationary cylinder at Reynolds number 550 ***"
 
 # Hardware configuration.
 np=2  # number of MPI processes
+export CUDA_VISIBLE_DEVICES=0  # GPU device indices
 
 print_usage() {
 	printf "usage: ./run.sh [-h] [-p DIR] [-m DIR] [-s IMAGE]\n\n"
@@ -44,12 +45,14 @@ prepend_path $mpidir/bin
 
 printf "\n[INFO] MPI version:\n"
 mpiexec --version
+printf "\n[INFO] nvidia-smi output:\n"
+nvidia-smi
 
 scriptdir="$( cd "$(dirname "$0")" ; pwd -P )"
 cd $scriptdir > /dev/null
 if [ -f "$simg" ]; then
 	printf "\n[INFO] Running within Singularity container\n"
-	mpiexec -np $np singularity exec --bind $scriptdir:/mnt $simg \
+	mpiexec -np $np singularity exec --nv --bind $scriptdir:/mnt $simg \
 		petibm-ibpm \
 		-directory /mnt \
 		-options_left \
