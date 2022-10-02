@@ -1,16 +1,40 @@
 # 2D flow around stationary cylinder (Re=3000)
 
-Run the example:
+A circular cylinder of diameter $D=1.0$ is placed at the center of a two-dimensional domain spanning $\left[ -15, 15 \right] \times \left[ -15, 15 \right]$.
+The initial velocity of the fluid in the domain is $\left( 1, 0 \right)$.
+Dirichlet conditions for the velocity are set on all boundaries (velocity set to $\left( 1, 0 \right)$), except at the outlet where the fluid is convected outside the domain in the $x$-direction at speed $1.0$.
+The Reynolds number (based on the freestream speed, the diameter of the circular cylinder, and the kinematic viscosity) is $3000$.
+
+The computational domain is discretized using an stretched Cartesian grid with $986 \times 986$ cells.
+The mesh is kept uniform in the sub-domain $\left[ -0.52, 0.52 \right] \times \left[ -0.52, 0.52 \right]$ and stretched to the external boundaries with a constant ratio of $1.01$.
+
+For this example, we run the simulation with the immersed-boundary projection method implemented in PetIBM for $3000$ time steps with a time increment of $0.001$ and save the numerical solution at the end.
+
+> :warning:
+>
+> All commands displayed below assume you are in the directory containing the present README file.
+
+## Run the example
 
 ```shell
-export CUDA_VISIBLE_DEVICES=0
-mpiexec -np 4 petibm-ibpm -options_left -log_view ascii:view.log
+docker pull barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+nvidia-docker run --rm -it -v $(pwd):/data barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial /data/run.sh
 ```
 
-The simulation completed 3,000 time steps in about 45 minutes, using:
+> :information_source:
+>
+> For reference, the simulation completed 3,000 time steps in about 45 minutes using
+>
+> * 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+> * 1 NVIDIA K40 GPU device
 
-* 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
-* 1 NVIDIA K40 GPU device
+## Post-processing
+
+Activate your `conda` environment (see [instructions](../../../README.md)):
+
+```shell
+conda activate petibm-examples
+```
 
 Plot the history of the drag coefficient and compare with numerical data from Koumoutsakos and Leonard (1995):
 
