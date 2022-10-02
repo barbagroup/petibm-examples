@@ -31,20 +31,20 @@ Of course, you can always modify the configuration files to run all solvers on C
 
 ## List of examples
 
-* [2D array of decaying vortices at $Re=10$](examples/taylorgreenvortices) (convergence analysis)
+* [2D array of decaying vortices at Re=10](examples/taylorgreenvortices) (convergence analysis)
 * Navier-Stokes solver
-  * [2D lid-driven cavity flow at $Re=100$, $1000$, $3200$, and $5000$](examples/navierstokes)
+  * [2D lid-driven cavity flow at Re=100, 1000, 3200, and 5000](examples/navierstokes)
 * Immersed boundary projection method (IBPM)
-  * [2D flow around an impulsively started circular cylinder at $Re=40$, $550$, and $3000$](examples/ibpm)
-  * [2D unsteady flow past a stationary circular cylinder at $Re=100$](examples/ibpm/cylinder2dRe100)
+  * [2D flow around an impulsively started circular cylinder at Re=40, 550, and 3000](examples/ibpm)
+  * [2D unsteady flow past a stationary circular cylinder at Re=100](examples/ibpm/cylinder2dRe100)
 * Decoupled IBPM
-  * [2D flow around an impulsively started circular cylinder at $Re=40$ and $550$](examples/decoupledibpm)
-  * [2D unsteady flow past a stationary circular cylinder at $Re=100$](examples/decoupledibpm/cylinder2dRe100)
-  * [2D flapping wing at $Re=75$](examples/decoupledibpm/flapping2dRe75)
-  * [2D flow around an inline oscillating cylinder at $Re=100$ and $KC=5$](examples/decoupledibpm/oscillatingcylinder2dRe100)
-  * [3D steady flow around an inclined flat plate at $Re=100$](examples/decoupledibpm/flatplate3dRe100)
-  * [3D steady flow around a sphere at $Re=50$, $100$, $150$, $200$, $250$, and $300$](examples/decoupledibpm/sphere3d)
-  * [3D unsteady flow around a sphere at $Re=350$](examples/decoupledibpm/sphere3d/Re350)
+  * [2D flow around an impulsively started circular cylinder at Re=40 and 550](examples/decoupledibpm)
+  * [2D unsteady flow past a stationary circular cylinder at Re=100](examples/decoupledibpm/cylinder2dRe100)
+  * [2D flapping wing at Re=75](examples/decoupledibpm/flapping2dRe75)
+  * [2D flow around an inline oscillating cylinder at Re=100 and KC=5](examples/decoupledibpm/oscillatingcylinder2dRe100)
+  * [3D steady flow around an inclined flat plate at Re=100](examples/decoupledibpm/flatplate3dRe100)
+  * [3D steady flow around a sphere at Re=50, 100, 150, 200, 250, and 300](examples/decoupledibpm/sphere3d)
+  * [3D unsteady flow around a sphere at Re=350](examples/decoupledibpm/sphere3d/Re350)
 
 To report bugs or ask questions, please use the GitHub issue tracking system.
 We also welcome pull-requests.
