@@ -48,10 +48,10 @@ python runs/temporal/scripts/plot_temporal_convergence.py
 
 The output file `temporal_convergence.png` is saved in the sub-folder `runs/temporal/figures` of the present directory.
 
-<img src="spatial/figures/spatial_convergence.png" alt="spatial_convergence" width="600">
+<img src="runs/spatial/figures/spatial_convergence.png" alt="spatial_convergence" width="600">
 
 **Figure:** Spatial errors in the x-component of the velocity field for the case a two-dimensional array of decaying vortices with ("IB") and without ("NS") an immersed boundary.
 
-<img src="temporal/figures/temporal_convergence.png" alt="temporal_convergence" width="600">
+<img src="runs/temporal/figures/temporal_convergence.png" alt="temporal_convergence" width="600">
 
 **Figure:** Temporal errors in the x-component of the velocity field for the case a two-dimensional array of decaying vortices with ("IB") and without ("NS") an immersed boundary.
