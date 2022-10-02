@@ -38,24 +38,25 @@ for label in ('ns', 'ib'):  # 'ns' for Navier-Stokes, 'ib' for decoupled IBPM
 # Plot the errors versus the grid-spacing size.
 # Only considering x-velocity due to symmetry of the problem.
 pyplot.rc('font', family='serif', size=14)
-fig, ax = pyplot.subplots(figsize=(6.0, 6.0))
-ax.set_xlabel(r'$\Delta x$')
+fig, ax = pyplot.subplots(figsize=(4.0, 6.0))
+ax.set_xlabel('Grid spacing ($\Delta x$)')
 ax.set_ylabel('Spatial error (u)')
-ax.loglog(dx_values, errors['ns']['l2'], label='$L_2$-norm',
+ax.loglog(dx_values, errors['ns']['l2'], label='$L_2$ (NS)',
           color='C0', marker='x')
-ax.loglog(dx_values, errors['ns']['linf'], label=r'$L_\infty$-norm',
+ax.loglog(dx_values, errors['ns']['linf'], label='$L_\infty$ (NS)',
           color='C0', marker='s')
-ax.loglog(dx_values, errors['ib']['l2'], label='$L_2$-norm (IB)',
+ax.loglog(dx_values, errors['ib']['l2'], label='$L_2$ (IB)',
           color='black', linestyle=':', marker='x')
-ax.loglog(dx_values, errors['ib']['linf'], label=r'$L_\infty$-norm (IB)',
+ax.loglog(dx_values, errors['ib']['linf'], label='$L_\infty$ (IB)',
           color='black', linestyle=':', marker='s')
 # Add guide for second-order convergence.
-markers = numpy.array([5e-4, 1e-1])
-second = 1e-4 * (markers / markers[-1])**2
-ax.loglog(markers, second, label=r'$2^{nd}$-order',
-          color='black', linestyle='--')
-ax.legend(frameon=False)
-ax.set_xlim(markers)
+markers = numpy.array([1e-3, 1e-1])
+second = 2e-3 * (markers / markers[-1])**2
+ax.loglog(markers, second, label='$2^{nd}$-order',
+          color='gray', linestyle='-')
+ax.legend(frameon=False, loc='lower left', fontsize=12)
+ax.set_xlim(markers[::-1])
+ax.set_ylim(1e-7, 1e-2)
 for loc in ('right', 'top'):
     ax.spines[loc].set_visible(False)
 fig.tight_layout()
