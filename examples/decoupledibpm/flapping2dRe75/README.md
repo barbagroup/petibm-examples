@@ -1,50 +1,62 @@
 # 2D flow around a flapping wing (Re = 100)
 
-Run the simulation locally from the current directory:
+> :warning:
+>
+> All commands displayed below assume you are in the directory containing the present README file.
+
+## Run the example
 
 ```shell
-./run.sh -m /home/mesnardo/software/openmpi/3.1.4/linux-gnu-opt -p .. > stdout.txt 2> stderr.txt
+docker pull barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+
+nvidia-docker create --name=flapping -v $(pwd):/data -v $(pwd)/../../cmake-modules:/tmp/cmake-modules barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+
+nvidia-docker start flapping
+nvidia-docker exec flapping /data/build.sh
+nvidia-docker exec flapping /data/run.sh
+nvidia-docker stop flapping
+
+nvidia-docker rm flapping
 ```
 
-The simulation completes 3200 time steps in about 8 minutes when using:
+> :information_source:
+>
+> For reference, the simulation completed 3,200 time steps in about 5 minutes using
+>
+> * 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+> * 1 NVIDIA K40 GPU device
 
-* 2 CPU processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz),
-* 1 NVIDIA K40 GPU device.
+## Post-processing
+
+Activate your `conda` environment (see [instructions](../../../README.md)):
+
+```shell
+conda activate petibm-examples
+```
 
 To visualize the instantaneous force coefficients:
 
 ```shell
-python scripts/plot_force_coefficients.py
+python run/scripts/plot_force_coefficients.py
 ```
 
-(The Matplotlib figure is saved as a PNG file in the sub-folder `figures` of the simulation directory.)
+(The figure is saved as a PNG file in the sub-folder `figures` of the simulation directory.)
 
-<img src="figures/force_coefficients.png" alt="force_coefficients" width="400">
+<img src="run/figures/force_coefficients.png" alt="force_coefficients" width="400">
 
 **Figure:** History of the lift (top) and drag (bottom) coefficients over 4 periods. We compare the forces obtained with PetIBM to the results from Li et al. (2015), Wang et al. (2004), and Eldredge (2007).
 
 To plot the contours of the vorticity field:
 
-To plot the contour of the vorticity field using VisIt:
-
 ```shell
-petibm-vorticity
-python scripts/plot_vorticity.py
+python run/scripts/plot_vorticity.py
 ```
 
 (The PNG files are saved in the sub-folder `figures` of the simulation directory.)
 
-To compare the vorticity field with the numerical results of Li et al. (2015) during the last flapping cycle:
+<img src="run/figures/wz_0002600.png" alt="wz_0002600" width="800">
 
-```shell
-python scripts/plot_vorticity_compare_li_et_al_2015.py
-```
-
-(The PNG file `wz_compare_li_et_al_2015.png` is saved in the sub-folder `figures` of the simulation directory.)
-
-<img src="figures/wz_compare_li_et_al_2015.png" alt="wz_compare_li_et_al_2015" width="800">
-
-**Figure:** Contours of the vorticity field at $t/T = 3$, $3.25$, $3.5$, $3.75$, and $4$ (40 levels uniformly distributed between $-20$ and $20$). We compare results obtained with PetIBM (top) to the data reported in Li et al. (2015) (bottom).
+**Figure:** Contours of the vorticity field at $t/T = 3.25$ (40 levels uniformly distributed between $-20$ and $20$).
 
 ## References
 

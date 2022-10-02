@@ -73,6 +73,7 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_COLOR_MAKEFILE ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/../../../cmake-modules")
+list(APPEND CMAKE_MODULE_PATH "/tmp/cmake-modules")
 
 # =====================================================================
 # PETSc
