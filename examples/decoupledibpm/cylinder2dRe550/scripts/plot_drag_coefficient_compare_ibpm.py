@@ -32,7 +32,7 @@ t, fx, _ = petibmpy.read_forces(filepath)
 cd = 2 * fx
 
 # Load drag force from file from IBPM run and compute drag coefficient.
-otherdir = rootdir / 'examples' / 'ibpm' / 'cylinder2dRe550_GPU'
+otherdir = rootdir / 'examples' / 'ibpm' / 'cylinder2dRe550'
 filepath = otherdir / 'output' / 'forces-0.txt'
 t1, fx1, _ = petibmpy.read_forces(filepath)
 cd1 = 2 * fx1

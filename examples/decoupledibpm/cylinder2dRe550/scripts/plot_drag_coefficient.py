@@ -42,7 +42,7 @@ fig, ax = pyplot.subplots(figsize=(6.0, 4.0))
 ax.set_xlabel('Non-dimensional time')
 ax.set_ylabel('Drag coefficient')
 ax.plot(t, cd, label='PetIBM')
-ax.plot(t2, cd2, label='Koumoutsakos & Leonard (1995)',
+ax.plot(t2, cd2, label='Koumoutsakos \n& Leonard (1995)',
         marker='o', linewidth=0, color='black')
 ax.axis((0.0, 3.0, 0.0, 2.0))
 ax.legend(frameon=False)
