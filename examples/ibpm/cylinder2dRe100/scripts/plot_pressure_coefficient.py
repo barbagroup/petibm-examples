@@ -53,14 +53,15 @@ with open(filepath, 'r') as infile:
     theta_li, cp_li = numpy.loadtxt(infile, delimiter=',', unpack=True)
 
 # Plot the distribution of the surface pressure coefficient.
-pyplot.rc('font', family='serif', size=16)
+pyplot.rc('font', family='serif', size=14)
 fig, ax = pyplot.subplots(figsize=(6.0, 4.0))
-ax.set_xlabel(r'$\theta$')
+ax.set_xlabel(r'$\theta (^o)$')
 ax.set_ylabel('$C_p$')
 ax.plot(theta_upper, cp_upper, label='PetIBM')
 ax.plot(theta_li, cp_li, label='Li et al. (2016)', linestyle='--')
-ax.legend(frameon=False, fontsize=12)
+ax.legend(frameon=False, fontsize=14)
 ax.set_xlim(0.0, 180.0)
+ax.set_xticks([0, 45, 90, 135, 180])
 ax.set_ylim(-1.5, 1.5)
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)

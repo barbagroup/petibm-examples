@@ -26,15 +26,15 @@ filepath = simudir / 'cylinder.body'
 xb, yb = petibmpy.read_body(filepath, skiprows=1)
 
 # Plot the contours of the vorticity field.
-pyplot.rc('font', family='serif', size=16)
-fig, ax = pyplot.subplots(figsize=(6.0, 6.0))
-ax.set_xlabel('x / D')
-ax.set_ylabel('y / D')
+pyplot.rc('font', family='serif', size=14)
+fig, ax = pyplot.subplots(figsize=(12.0, 4.0))
+ax.set_xlabel('$x / D$')
+ax.set_ylabel('$y / D$')
 levels = numpy.arange(-3.0, 3.0 + 0.4 / 2, 0.4)
 ax.contour(x, y, wz, levels=levels, colors='black')
 ax.plot(xb, yb, color='red')
 ax.axis('scaled', adjustable='box')
-ax.set_xlim(-1.0, 5.0)
+ax.set_xlim(-1.0, 11.0)
 ax.set_ylim(-2.0, 2.0)
 fig.tight_layout()
 
