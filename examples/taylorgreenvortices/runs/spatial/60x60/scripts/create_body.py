@@ -11,9 +11,10 @@ import petibmpy
 simudir = pathlib.Path(__file__).absolute().parents[1]
 
 # Set parameters.
-L, n = 1.0, 60  # Length of the domain and number of cells along a direction
-R = 0.25  # radius of the cylinder
-xc, yc = 0.5, 0.5  # center of the cylinder
+L = 2 * math.pi  # Length of the domain
+n = 60  # Number of cells along a direction
+R = 0.25 * L  # radius of the cylinder
+xc, yc = L / 2, L / 2  # center of the cylinder
 ds = L / n  # approximate distance between two adjacent markers
 N = math.ceil(2 * numpy.pi * R / ds)  # number of segments on boundary
 

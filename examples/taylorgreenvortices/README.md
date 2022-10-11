@@ -1,8 +1,8 @@
 # Convergence analysis using the example of the 2D decaying Taylor-Green vortices
 
-We consider the example of a two-dimensional array of decaying vortices to report the temporal convergence of the Navier-Stokes solver with and without an immersed body in the domain.
+We consider the example of a two-dimensional array of decaying vortices to report the spatial and temporal convergence of the Navier-Stokes solver.
 
-The computational domain is $\left[ 0, 1 \right]^2$.
+The computational domain is $\left[ 0, 2 \pi \right]^2$.
 The Reynolds number (based on the domain length $L$, a characteristic velocity of $U = 1$, and the kinematic viscosity) is set to $Re = 10$ and we advance the solution in time to $t = 0.2$, with time-step size $\Delta t = 10^{-4}$.
 
 All commands displayed below assume you are in the directory containing the present README file.
@@ -54,4 +54,4 @@ The output file `temporal_convergence.png` is saved in the sub-folder `runs/temp
 
 <img src="runs/temporal/figures/temporal_convergence.png" alt="temporal_convergence" width="600">
 
-**Figure:** Temporal errors in the x-component of the velocity field for the case a two-dimensional array of decaying vortices with ("IB") and without ("NS") an immersed boundary.
+**Figure:** Temporal errors in the x-component of the velocity field for the case a two-dimensional array of decaying vortices.

@@ -1,10 +1,11 @@
 """Helper functions to plot the solution fields."""
 
+import numpy
 from matplotlib import pyplot
 
 
 def plot_contourf_field(grid, field, name, figsize=(8.0, 8.0),
-                        levels=None, axis_lim=(0.0, 1.0, 0.0, 1.0),
+                        levels=None, axis_lim=None,
                         ref=None, body=None):
     """Plot the filled contour of the a given 2D field.
 
@@ -22,7 +23,7 @@ def plot_contourf_field(grid, field, name, figsize=(8.0, 8.0),
         Levels of the contours to plot; default is None.
     axis_lim : tuple of floats, optional
         Limits of the x- and y-axes ('xmin', 'xmax', 'ymin', 'ymax');
-        default is (0.0, 1.0, 0.0, 1.0).
+        default is None (and [0, 2 * pi]^2 is used).
     ref : numpy.ndarray, optional
         Reference solution to plot on separate Matplotlib axes;
         default is None (i.e., does not plot the reference solution).
@@ -45,6 +46,8 @@ def plot_contourf_field(grid, field, name, figsize=(8.0, 8.0),
         ax2 = fig.add_subplot(122)
     else:
         ax = fig.add_subplot(111)
+    if axis_lim is None:
+        axis_lim = (0.0, 2 * numpy.pi, 0.0, 2 * numpy.pi)
     ax.set_title(name)
     ax.set_xlabel('x')
     ax.set_ylabel('y')

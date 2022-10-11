@@ -32,6 +32,7 @@ declare -a folders=(
 "dt=0.005"
 "dt=0.0025"
 "dt=0.00125"
+"dt=0.0001"
 )
 for folder in "${folders[@]}"
 do
@@ -39,9 +40,6 @@ do
     printf "\n\n*** Time-step size: $folder ***\n\n"
     printf "\n\t- Navier-Stokes solver\n"
     mpiexec $MPIEXEC_ARGS petibm-taylorgreen $PETIBM_ARGS
-    printf "\n\t- Decoupled IBPM solver\n"
-    mpiexec $MPIEXEC_ARGS petibm-taylorgreen $PETIBM_ARGS \
-        -with-ib -output output-with-ib
 done
 
 exit 0

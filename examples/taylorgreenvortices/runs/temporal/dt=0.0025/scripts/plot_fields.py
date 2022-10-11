@@ -11,7 +11,7 @@ import rodney
 
 
 args = rodney.parse_command_line()
-timestep, dt = 2000, 1e-4  # time-step index and time-step size
+timestep, dt = 80, 2.5e-3  # time-step index and time-step size
 time = timestep * dt  # time value
 nu = 0.1  # coefficient of viscosity
 

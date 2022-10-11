@@ -49,7 +49,6 @@ PetscErrorCode TaylorGreenSolver::setInitialSolution(const PetscReal &ti)
     DM packer, u_da, v_da, p_da;
     Vec u, v;
     PetscReal nu = config["flow"]["nu"].as<PetscReal>();
-    PetscReal a = 2 * PETSC_PI;
 
     PetscFunctionBeginUser;
 
@@ -67,9 +66,9 @@ PetscErrorCode TaylorGreenSolver::setInitialSolution(const PetscReal &ti)
     {
         for (PetscInt i = info.xs; i < info.xs + info.xm; ++i)
         {
-            u_arr[j][i] = -PetscCosReal(a * xu[i]) *
-                          PetscSinReal(a * yu[j]) *
-                          PetscExpReal(-2 * a * a * ti * nu);
+            u_arr[j][i] = -PetscCosReal(xu[i]) *
+                          PetscSinReal(yu[j]) *
+                          PetscExpReal(-2 * nu * ti);
         }
     }
     ierr = DMDAVecRestoreArray(u_da, u, &u_arr); CHKERRQ(ierr);
@@ -83,9 +82,9 @@ PetscErrorCode TaylorGreenSolver::setInitialSolution(const PetscReal &ti)
     {
         for (PetscInt i = info.xs; i < info.xs + info.xm; ++i)
         {
-            v_arr[j][i] = PetscSinReal(a * xv[i]) *
-                          PetscCosReal(a * yv[j]) *
-                          PetscExpReal(-2 * a * a * ti * nu);
+            v_arr[j][i] = PetscSinReal(xv[i]) *
+                          PetscCosReal(yv[j]) *
+                          PetscExpReal(-2 * nu * ti);
         }
     }
     ierr = DMDAVecRestoreArray(v_da, v, &v_arr); CHKERRQ(ierr);
@@ -103,9 +102,9 @@ PetscErrorCode TaylorGreenSolver::setInitialSolution(const PetscReal &ti)
     {
         for (PetscInt i = info.xs; i < info.xs + info.xm; ++i)
         {
-            p_arr[j][i] = -0.25 * (PetscCosReal(2 * a * xp[i]) +
-                                   PetscCosReal(2 * a * yp[j])) *
-                          PetscExpReal(-4 * a * a * ti * nu);
+            p_arr[j][i] = -0.25 * (PetscCosReal(2 * xp[i]) +
+                                   PetscCosReal(2 * yp[j])) *
+                          PetscExpReal(-4 * nu * ti);
         }
     }
     ierr = DMDAVecRestoreArray(p_da, solution->pGlobal, &p_arr); CHKERRQ(ierr);
