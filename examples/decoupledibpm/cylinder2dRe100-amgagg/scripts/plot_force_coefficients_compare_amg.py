@@ -62,7 +62,7 @@ for label, cfg in cases.items():
 
     # Compute the maximum deviation of the lift coefficient from mean value.
     cl_max_dev = max(abs(cl_window - cl_mean))
-    data['cl_max_dev'] = rms
+    data['cl_max_dev'] = cl_max_dev
 
     # Compute the Strouhal number
     # (using the averaged valley-to-valley time length).
