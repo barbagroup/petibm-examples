@@ -7,6 +7,16 @@ import pathlib
 import petibmpy
 
 
+def log_lstsq_fit(x, y):
+    """Return the coefficients of the best-fitted line."""
+    m, c = numpy.linalg.lstsq(
+        numpy.vstack([numpy.log(x), numpy.ones_like(x)]).T,
+        numpy.log(y),
+        rcond=None
+    )[0]
+    return m, c
+
+
 rootdir = pathlib.Path(__file__).absolute().parents[1]
 
 name = 'u'  # name of the variable for the x-velocity
@@ -30,19 +40,23 @@ for i in range(len(u) - 1):
     linf = numpy.max(numpy.abs(u[i] - u[-1]))
     linf_errors.append(linf)
 
+dt = dt[:-1]
+print(f'Slope in L2 errors: {log_lstsq_fit(dt, l2_errors)[0]:0.1f}')
+print(f'Slope in Linf errors: {log_lstsq_fit(dt, linf_errors)[0]:0.1f}')
+
 pyplot.rc('font', family='serif', size=14)
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
 ax.set_xlabel('Time-step size ($\Delta t$)')
 ax.set_ylabel('Temporal error (u)')
-ax.loglog(dt[:-1], linf_errors, label='$L_\infty$',
+ax.loglog(dt, linf_errors, label='$L_\infty$',
           color='black', marker='s')
-ax.loglog(dt[:-1], l2_errors, label='$L_2$',
+ax.loglog(dt, l2_errors, label='$L_2$',
           color='black', marker='s', markerfacecolor='none')
-first = 1.4 * linf_errors[0] / dt[0] * numpy.array(dt[:-1])
-second = 0.6 * l2_errors[0] / dt[0]**2 * numpy.array(dt[:-1])**2
-ax.loglog(dt[:-1], first, label='$1^{st}$-order',
+first = 1.4 * linf_errors[0] / dt[0] * numpy.array(dt)
+second = 0.6 * l2_errors[0] / dt[0]**2 * numpy.array(dt)**2
+ax.loglog(dt, first, label='$1^{st}$-order',
           color='black', linestyle='--')
-ax.loglog(dt[:-1], second, label='$2^{nd}$-order',
+ax.loglog(dt, second, label='$2^{nd}$-order',
           color='black', linestyle=':')
 ax.legend(frameon=False, fontsize=14)
 ax.set_xlim(5e-2, 5e-4)

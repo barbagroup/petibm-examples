@@ -8,6 +8,16 @@ from scipy import interpolate
 import petibmpy
 
 
+def log_lstsq_fit(x, y):
+    """Return the coefficients of the best-fitted line."""
+    m, c = numpy.linalg.lstsq(
+        numpy.vstack([numpy.log(x), numpy.ones_like(x)]).T,
+        numpy.log(y),
+        rcond=None
+    )[0]
+    return m, c
+
+
 rootdir = pathlib.Path(__file__).absolute().parents[1]
 
 name = 'u'  # name of the variable for the x-velocity
@@ -48,19 +58,23 @@ for i in range(len(u) - 1):
     linf = numpy.max(numpy.abs(u[i] - u[-1]))
     linf_errors.append(linf)
 
+dx = dx[:-1]
+print(f'Slope in L2 errors: {log_lstsq_fit(dx, l2_errors)[0]:0.1f}')
+print(f'Slope in Linf errors: {log_lstsq_fit(dx, linf_errors)[0]:0.1f}')
+
 pyplot.rc('font', family='serif', size=14)
 fig, ax = pyplot.subplots(figsize=(5.0, 5.0))
 ax.set_xlabel('Grid Spacing ($\Delta x$)')
 ax.set_ylabel('Spatial error (u)')
-ax.loglog(dx[:-1], linf_errors, label='$L_\infty$',
+ax.loglog(dx, linf_errors, label='$L_\infty$',
           color='black', marker='s')
-ax.loglog(dx[:-1], l2_errors, label='$L_2$',
+ax.loglog(dx, l2_errors, label='$L_2$',
           color='black', marker='s', markerfacecolor='none')
-first = 1.2 * linf_errors[0] / dx[0] * numpy.array(dx[:-1])
-second = 0.8 * l2_errors[0] / dx[0]**2 * numpy.array(dx[:-1])**2
-ax.loglog(dx[:-1], first, label='$1^{st}$-order',
+first = 1.2 * linf_errors[0] / dx[0] * numpy.array(dx)
+second = 0.8 * l2_errors[0] / dx[0]**2 * numpy.array(dx)**2
+ax.loglog(dx, first, label='$1^{st}$-order',
           color='black', linestyle='--')
-ax.loglog(dx[:-1], second, label='$2^{nd}$-order',
+ax.loglog(dx, second, label='$2^{nd}$-order',
           color='black', linestyle=':')
 ax.legend(frameon=False, fontsize=14)
 ax.set_xlim(2e-1, 1e-2)
