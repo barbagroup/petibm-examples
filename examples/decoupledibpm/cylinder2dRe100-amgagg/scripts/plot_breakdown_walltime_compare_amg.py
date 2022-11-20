@@ -27,11 +27,11 @@ cases = {
 }
 
 stage_labels = OrderedDict({
-    'rhsVelocity': 'Set RHS velocity',
-    'solveVelocity': 'Solve velocity',
-    'rhsPoisson': 'Set RHS Poisson',
-    'solvePoisson': 'Solve Poisson',
-    'other': 'Other'
+    'rhsVelocity': dict(label='Set RHS velocity', color='C2'),
+    'solveVelocity': dict(label='Solve velocity', color='C1'),
+    'rhsPoisson': dict(label='Set RHS Poisson', color='C3'),
+    'solvePoisson': dict(label='Solve Poisson', color='C0'),
+    'other': dict(label='Other', color='C5')
 })
 
 for name, config in cases.items():
@@ -58,18 +58,17 @@ index = 1
 for data in cases.values():
     bottom = 0.0
     stages = data['stages']
-    for i, (key, label) in enumerate(stage_labels.items()):
+    for i, (key, plt_kwargs) in enumerate(stage_labels.items()):
         if key not in stages:
             continue
         walltime = stages[key]['wall-time (s)'] / 60
-        ax.bar(index, walltime, bottom=bottom, label=label,
-               color=f'C{i}', width=0.25)
+        ax.bar(index, walltime, bottom=bottom, width=0.25, **plt_kwargs)
         bottom += walltime
     if index == 1:
         walltime_ref = bottom
     else:
         speedup = walltime_ref / bottom
-        s = f'$x{speedup:0.1f}$'
+        s = f'${speedup:0.1f}x$'
         ax.text(index, bottom + 1, s,
                 horizontalalignment='center',
                 verticalalignment='center')
