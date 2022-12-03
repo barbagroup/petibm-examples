@@ -27,22 +27,24 @@ config = config['parameters']
 nstart, nt, nsave = config['startStep'], config['nt'], config['nsave']
 dt = config['dt']
 
-states = numpy.arange(nstart, nstart + nt + 1, nsave)[1:]
+times = numpy.array([3.0, 3.25, 3.5, 3.75, 4.0])
+timesteps = numpy.array(times * T / dt, dtype='int')
+
 pyplot.rc('font', family='serif', size=14)
 levels = numpy.linspace(-20.0, 20.0, num=40)  # contour levels
 figdir = simudir / 'figures'  # folder to contain PNG files
 figdir.mkdir(parents=True, exist_ok=True)
-for state in states:
-    print(f'[time step {state}] Load and plot contours of {name}')
+for timestep in timesteps:
+    print(f'[time step {timestep}] Load and plot contours of {name}')
     # Load data from file.
-    filepath = datadir / f'{state:0>7}.h5'
+    filepath = datadir / f'{timestep:0>7}.h5'
     data = petibmpy.read_field_hdf5(filepath, name)
     # Load body coordinates from file.
-    filepath = datadir / f'ellipse_{state:0>7}.2D'
+    filepath = datadir / f'ellipse_{timestep:0>7}.2D'
     body = petibmpy.read_body(filepath)
     # Plot the contour of the field variable.
     fig, ax = pyplot.subplots(figsize=(6.0, 6.0))
-    ax.text(-3.5, 0.5, f't / T = {state * dt / T:.3f}')
+    ax.text(-3.5, 0.5, f't / T = {timestep * dt / T:g}', fontsize=16)
     ax.set_xlabel('x/c')
     ax.set_ylabel('y/c')
     ax.contour(*grid, data, levels=levels, extend='both')
@@ -50,8 +52,10 @@ for state in states:
     ax.axis('scaled', adjustable='box')
     ax.set_xlim(-4.0, 3.0)
     ax.set_ylim(-5.0, 1.0)
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
     fig.tight_layout()
     # Save the figure as PNG.
-    filepath = figdir / f'wz_{state:0>7}.png'
+    filepath = figdir / f'wz_{timestep:0>7}.png'
     fig.savefig(filepath, dpi=300, bbox_inches='tight')
     pyplot.close(fig)

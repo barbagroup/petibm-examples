@@ -11,10 +11,9 @@ _References:_
 
 """
 
-from matplotlib import pyplot
 import numpy
-import os
 import pathlib
+from matplotlib import pyplot
 
 import petibmpy
 
@@ -48,9 +47,7 @@ def load_data_ghia_et_al_1982(filepath, Re):
 
 # Parameters.
 Res = [100, 1000, 3200, 5000]  # Reynolds numbers
-# Res = [100, 1000, 5000]  # Reynolds numbers
 timesteps = [1000, 10000, 25000, 60000]  # time step to read the solution
-# timesteps = [1000, 10000, 60000]  # time step to read the solution
 show_figure = True  # display the Matplotlib figure
 save_figure = True  # save the Matplotlib figure
 
@@ -58,14 +55,16 @@ maindir = pathlib.Path(__file__).absolute().parents[1]
 rootdir = maindir.parents[1]
 
 # Initialize the figure.
-pyplot.rc('font', family='serif', size=12)
-fig, (ax1, ax2) = pyplot.subplots(ncols=2, figsize=(8.0, 4.0))
-ax1.set_xlabel('y')
-ax1.set_ylabel('u')
-ax2.set_xlabel('x')
-ax2.set_ylabel('v')
+pyplot.rc('font', family='serif', size=10)
+fig, (ax1, ax2) = pyplot.subplots(ncols=2, figsize=(6.0, 4.0))
+ax1.set_xlabel('y-coordinate')
+ax1.set_ylabel('Centerline u-velocity')
+ax2.set_xlabel('x-coordinate')
+ax2.set_ylabel('Centerline v-velocity')
+ghia_plt_kwargs = dict(linewidth=0, color='black', marker='o',
+                       markerfacecolor='none', markersize=4)
 
-for Re, timestep in zip(Res, timesteps):
+for i, (Re, timestep) in enumerate(zip(Res, timesteps)):
     # Load data from Ghia et al. (1982).
     adir = rootdir / 'data'
     filepath = adir / 'ghia_et_al_1982_lid_driven_cavity.dat'
@@ -86,19 +85,31 @@ for Re, timestep in zip(Res, timesteps):
     vc = petibmpy.linear_interpolation(v, yv, 0.5)
 
     # Plot the velocity profiles.
-    ax1.plot(yu, uc, label=f'Re = {Re}')
-    label = ('Ghia et al. (1982)' if Re == Res[-1] else None)
-    ax1.plot(yu_g, uc_g, label=label, linewidth=0,
-             color='black', marker='o', markerfacecolor='none')
-    ax2.plot(xv, vc, label=f'Re = {Re}')
-    ax2.plot(xv_g, vc_g, label='Ghia et al. (1982)', linewidth=0,
-             color='black', marker='o', markerfacecolor='none')
+    offset = 3 * i
+    ax1.plot(yu, uc + offset, label=f'PetIBM', color='C0')
+    ax1.plot(yu_g, uc_g + offset, label='Ghia et al. (1982)',
+             **ghia_plt_kwargs)
+    l1, = ax2.plot(xv, vc + offset, label=f'PetIBM', color='C0')
+    l2, = ax2.plot(xv_g, vc_g + offset, label='Ghia et al. (1982)',
+                   **ghia_plt_kwargs)
 
-# Finalize the figure.
-ax1.legend(loc='upper left', frameon=False)
-ax1.axis((0.0, 1.0, -0.75, 1.0))
-ax2.axis((0.0, 1.0, -0.75, 1.0))
+    for ax in (ax1, ax2):
+        ax.axhline(3 * i + 1.5, xmin=0.0, xmax=1.0,
+                   color='black', linewidth=0.5)
+        ax.text(0.005, 3 * i - 1.4, f'Re={Re}')
+
+yticklabels = 4 * [-1, 0, 1]
+yticklocs = numpy.arange(-1, 11)
+for ax in (ax1, ax2):
+    ax.axis([0.0, 1.0, -1.5, 10.5])
+    ax.set_xticks([0.0, 0.5, 1.0])
+    ax.set_yticks(yticklocs)
+    ax.set_yticklabels(yticklabels)
+
+# fig.legend(handles=[l1, l2], ncol=2, loc='upper center',
+#            frameon=False, fontsize=12)
 fig.tight_layout()
+# fig.subplots_adjust(top=0.9)
 
 if show_figure:
     pyplot.show()

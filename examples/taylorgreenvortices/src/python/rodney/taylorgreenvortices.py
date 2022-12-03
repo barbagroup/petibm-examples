@@ -28,9 +28,8 @@ def taylor_green_vortex(x, y, t, nu):
 
     """
     X, Y = numpy.meshgrid(x, y)
-    a = 2 * numpy.pi
-    u = -numpy.cos(a * X) * numpy.sin(a * Y) * numpy.exp(-2 * a**2 * nu * t)
-    v = +numpy.sin(a * X) * numpy.cos(a * Y) * numpy.exp(-2 * a**2 * nu * t)
-    p = (-0.25 * (numpy.cos(2 * a * X) + numpy.cos(2 * a * Y)) *
-         numpy.exp(-4 * a**2 * nu * t))
+    F = numpy.exp(-2 * nu * t)
+    u = -numpy.cos(X) * numpy.sin(Y) * F
+    v = +numpy.sin(X) * numpy.cos(Y) * F
+    p = -0.25 * (numpy.cos(2 * X) + numpy.cos(2 * Y)) * F**2
     return u, v, p

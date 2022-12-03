@@ -1,0 +1,19 @@
+# Experimental data from Dutsch et al. (1998).
+# Vertical profile of the y-velocity
+# at phase angle 210 degrees and at location x/D=0.6.
+# Data digitized from Fig. 10 of Cai et al. (2016)
+# by mesnardo@gwu.edu on Feb. 14, 2020 (using WebPlotDigitizer).
+#
+# References:
+# * Dütsch, H., Durst, F., Becker, S., & Lienhart, H. (1998). Low-Reynolds-number flow around an oscillating circular cylinder at low Keulegan–Carpenter numbers. Journal of Fluid Mechanics, 360, 249-271.
+# * Cai, S. G., Ouahsine, A., Favier, J., & Hoarau, Y. (2016). Improved implicit immersed boundary method via operator splitting. In Computational Methods for Solids and Fluids (pp. 49-66). Springer, Cham.
+#
+# v, y
+-0.06303724928366794, -0.9779664799642913
+-0.08882521489971351, -0.880008927157276
+-0.2263610315186244, -0.6842018113490085
+-0.3209169054441259, -0.583818087572533
+-0.06876790830945545, -0.4855113677268865
+0.31518624641833837, 0.6204986249298067
+0.2206303724928369, 0.7208823487062822
+0.10028653295128898, 0.9242487509179134

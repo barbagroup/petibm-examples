@@ -1,14 +1,38 @@
 # 2D lid-driven cavity flow at Re=5000
 
-Run the example:
+This example solves the flow in a 2D square cavity of unit length with the top wall moving in the positive $x$ direction at speed $1$.
+The Reynolds number (based on the kinematic viscosity, the length of the cavity, and the speed of the moving wall) is $5000$.
+The fluid is initially at rest and the top wall impulsively starts moving.
+
+The computational domain $\left[ 0, 1 \right] \times \left[0, 1 \right]$ is uniformly discretized with $192$ cells in each direction.
+
+We run $60000$ time steps with a time increment of $0.002$ and save the numerical solution at the end.
+
+> :warning:
+>
+> All commands displayed below assume you are in the directory containing the present README file.
+
+## Run the example
 
 ```shell
-mpiexec -np 4 petibm-navierstokes -options_left -log_view ascii:view.log
+docker pull barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+nvidia-docker run --rm -it -v $(pwd):/data barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial /data/run.sh
 ```
 
-The simulation completed 60,000 time steps in about 20 minutes using
+> :information_source:
+>
+> For reference, the simulation completed 60,000 time steps in about 8 minutes using
+>
+> * 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+> * 1 NVIDIA K40 GPU device
 
-* 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+## Post-processing
+
+Activate your `conda` environment (see [instructions](../../../README.md)):
+
+```shell
+conda activate petibm-examples
+```
 
 Plot the centerline velocity components and compare with the numerical results from Ghia et al. (1982):
 
@@ -25,7 +49,6 @@ The figure is saved as a PNG file (`centerline_velocities_0060000.png`) in the s
 Plot the contours of the vorticity field:
 
 ```shell
-petibm-vorticity
 python scripts/plot_vorticity.py
 ```
 

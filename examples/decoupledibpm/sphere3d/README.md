@@ -1,15 +1,30 @@
 # 3D steady flow around a stationary sphere (Re=50, 100, 150, 200, 250, 300)
 
-Submit the job on Pegasus:
+> :warning:
+>
+> All commands displayed below assume you are in the directory containing the present README file.
+
+## Run the example
 
 ```shell
-sbatch pegasus.slurm
+docker pull barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+nvidia-docker run --rm -it -v $(pwd):/data barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial /data/run.sh
 ```
 
-Each simulation computes 2,500 time steps in about 16 minutes using one `small-gpu` node on Pegasus
+> :information_source:
+>
+> For reference, each simulation completed 2,500 time steps in about 1 hour using
+>
+> * 4 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+> * 1 NVIDIA K40 GPU device
 
-* 20 MPI processes (Dual 20-Core 3.70GHz Intel Xeon Gold 6148)
-* 2 NVIDIA Tesla V100 GPU devices
+## Post-processing
+
+Activate your `conda` environment (see [instructions](../../../README.md)):
+
+```shell
+conda activate petibm-examples
+```
 
 To plot the drag coefficient versus the Reynolds number
 

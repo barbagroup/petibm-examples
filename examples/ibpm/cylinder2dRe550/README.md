@@ -1,14 +1,40 @@
 # 2D flow around stationary cylinder (Re=550)
 
-Run the example:
+A circular cylinder of diameter $D=1.0$ is placed at the center of a two-dimensional domain spanning $\left[ -15, 15 \right] \times \left[ -15, 15 \right]$.
+The initial velocity of the fluid in the domain is $\left( 1, 0 \right)$.
+Dirichlet conditions for the velocity are set on all boundaries (velocity set to $\left( 1, 0 \right)$), except at the outlet where the fluid is convected outside the domain in the $x$-direction at speed $1.0$.
+The Reynolds number (based on the freestream speed, the diameter of the circular cylinder, and the kinematic viscosity) is $550$.
+
+The computational domain is discretized using an stretched Cartesian grid with $450 \times 450$ cells.
+The mesh is kept uniform in the sub-domain $\left[ -0.54, 0.54 \right] \times \left[ -0.54, 0.54 \right]$ and stretched to the external boundaries with a constant ratio of $1.02$.
+
+For this example, we run the simulation with the immersed-boundary projection method implemented in PetIBM for $1200$ time steps with a time increment of $0.0025$ and save the numerical solution at the end.
+
+> :warning:
+>
+> All commands displayed below assume you are in the directory containing the present README file.
+
+## Run the example
 
 ```shell
-mpiexec -np 2 petibm-ibpm -options_left -log_view ascii:view.log
+docker pull barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial
+nvidia-docker run --rm -it -v $(pwd):/data barbagroup/petibm:0.5.1-GPU-OpenMPI-xenial /data/run.sh
 ```
 
-The simulation completed 1,200 time steps in about 35 minutes using
+> :information_source:
+>
+> For reference, the simulation completed 1,200 time steps in less than 5 minutes using
+>
+> * 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+> * 1 NVIDIA K40 GPU device
 
-* 2 MPI processes (Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz)
+## Post-processing
+
+Activate your `conda` environment (see [instructions](../../../README.md)):
+
+```shell
+conda activate petibm-examples
+```
 
 Plot the history of the drag coefficient and compare with numerical data from Koumoutsakos and Leonard (1995):
 
@@ -21,12 +47,6 @@ The figure is saved as a PNG file (`drag_coefficient.png`) in the sub-folder `fi
 <img src="figures/drag_coefficient.png" alt="drag_coefficient" width="400">
 
 **Figure:** History of the drag coefficient for the cylinder at Reynolds number $550$. Comparison with the numerical data of reported by Koumoutsakos & Leonard (1995).
-
-Compute the vorticity field at saved time steps:
-
-```shell
-petibm-vorticity
-```
 
 Plot the contours of the vorticity field at the final time step:
 
